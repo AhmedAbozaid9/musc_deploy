@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Alexandria } from "next/font/google";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 const alexandria = Alexandria({ subsets: ["arabic"] });
 export const metadata: Metadata = {
   title: {
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={`${alexandria.className} antialiased`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

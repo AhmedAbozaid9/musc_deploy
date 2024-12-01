@@ -36,7 +36,7 @@ export default function Header() {
                     key={index}
                     className={`${
                       item.link !== path && "opacity-[0.8]"
-                    } hover:opacity-[1] font-[400] text-[18px]`}
+                    } hover:opacity-[1] font-[400] text-[18px] text-secondary`}
                   >
                     {item.title}
                   </Link>
@@ -57,7 +57,7 @@ export default function Header() {
               <Button variant="link" size={"icon"}>
                 <SearchIcon />
               </Button>
-              <div className="block lg:hidden">
+              <div className="block lg:hidden text-secondary">
                 <Sheet open={SideBar} onOpenChange={setSidebar}>
                   <SheetTrigger>O</SheetTrigger>
                   <SheetContent className="bg-primary">
@@ -70,7 +70,7 @@ export default function Header() {
                               key={index}
                               className={`${
                                 item.link !== path && "opacity-[0.8]"
-                              } hover:opacity-[1] font-[400] text-[18px] `}
+                              } hover:opacity-[1] font-[400] text-[18px] text-secondary`}
                               onClick={handleClose}
                             >
                               {item.title}
