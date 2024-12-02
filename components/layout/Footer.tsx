@@ -41,6 +41,42 @@ export default function Footer() {
               </div>
             </div>
           </div>
+          <div className="flex items-start justify-between flex-wrap lg:flex-nowrap gap-[36px] lg:mt-[64px] mt-[24px]">
+            <div>
+              <h2 className="lg:text-[32px] text-[24px] font-[500]">
+                الاجهزه الكهربائيه
+              </h2>
+              <div className="grid lg:grid-cols-2 grid-cols-4 gap-[16px] mt-[24px]">
+                <Link href="#">تكيفات</Link>
+                <Link href="#">تلفزيونات</Link>
+                <Link href="#">ثلاجات</Link>
+                <Link href="#">غسالات</Link>
+                <Link href="#">بوتجازات</Link>
+                <Link href="#">سخانات</Link>
+              </div>
+            </div>
+            <div>
+              <h2 className="lg:text-[32px] text-[24px] font-[500] ">
+                الصحي والتواليت
+              </h2>
+              <div className="grid grid-cols-1 gap-[16px] mt-[24px]">
+                <Link href="#">الخلاطات وأنظمة الدفن والشاور</Link>
+                <Link href="#">أحواص وحدات وحلل</Link>
+                <Link href="#">أطقم الصحي والتواليت</Link>
+              </div>
+            </div>
+            <div>
+              <h2 className="lg:text-[32px] text-[24px] font-[500] mb-[24px]">
+                خدمة العملاء
+              </h2>
+              <div className="grid grid-cols-1 gap-[16px] mt-[24px]">
+                <Link href="#">سياسة الشحن والتوصيل</Link>
+                <Link href="#">سياسة الأسترجاع والأستبدال</Link>
+                <Link href="#">الشروط والأحكام</Link>
+                <Link href="#">الأسئلة الشائعة</Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
