@@ -1,4 +1,5 @@
 import BannerHero from "@/components/pages/home/BannerHero";
+import ShopByCategory from "@/components/pages/home/ShopByCategory";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "الرئيسية | متجري",
@@ -8,6 +9,7 @@ export default function Home() {
   return (
     <>
       <BannerHero />
+      <ShopByCategory />
     </>
   );
 }
