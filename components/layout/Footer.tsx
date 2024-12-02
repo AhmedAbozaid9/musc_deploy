@@ -5,6 +5,7 @@ import { Input } from "../ui/input";
 import Tiktok from "../Icons/Social/Tiktok";
 import Instagram from "../Icons/Social/Instagram";
 import Facebook from "../Icons/Social/Facebook";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -41,7 +42,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className="flex items-start justify-between flex-wrap lg:flex-nowrap gap-[36px] lg:mt-[64px] mt-[24px]">
+          <div className="flex items-start justify-between flex-wrap lg:flex-nowrap gap-[36px] lg:mt-[64px] mt-[24px] pb-[32px] border-b border-b-[#ffffff3f]">
             <div>
               <h2 className="lg:text-[32px] text-[24px] font-[500]">
                 الاجهزه الكهربائيه
@@ -76,6 +77,15 @@ export default function Footer() {
                 <Link href="#">الأسئلة الشائعة</Link>
               </div>
             </div>
+          </div>
+          <div className="flex items-start lg:justify-between justify-center flex-wrap lg:flex-nowrap gap-[16px] mt-[24px]">
+            <h2>جميع الحقوق محفوطة لدي متجري © 2024</h2>
+            <Image
+              src="/payment.png"
+              alt="Payment Accept"
+              width={253}
+              height={28}
+            />
           </div>
         </div>
       </div>
