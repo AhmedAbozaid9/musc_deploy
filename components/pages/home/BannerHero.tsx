@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function BannerHero() {
   return (
     <>
-      <div className="container text-secondary">
+      <div className="container text-secondary pb-[60px]">
         <div
           className="lg:h-[80vh] h-[60vh] rounded-[32px] bg-cover flex flex-col justify-between lg:p-[40px] px-[12px] py-[32px]"
           style={{

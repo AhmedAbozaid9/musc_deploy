@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export default function ShopByCategory() {
   return (
     <>
-      <div className="lg:py-[120px] py-[64px]">
+      <div className="lg:py-[60px] py-[32px]">
         <div className="container">
           <div className="flex justify-between items-center gap-[16px]">
             <h2 className="lg:text-[40px] text-[24px] font-[600]">

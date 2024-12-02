@@ -1,4 +1,5 @@
 import BannerHero from "@/components/pages/home/BannerHero";
+import OnSaleProducts from "@/components/pages/home/OnSaleProducts";
 import ShopByCategory from "@/components/pages/home/ShopByCategory";
 import { Metadata } from "next";
 export const metadata: Metadata = {
@@ -10,6 +11,7 @@ export default function Home() {
     <>
       <BannerHero />
       <ShopByCategory />
+      <OnSaleProducts />
     </>
   );
 }
