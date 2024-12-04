@@ -3,6 +3,7 @@
 @tailwind utilities;
 html,
 body {
+  background-color: #fafafa !important;
   overflow-x: hidden;
 }
 :root {

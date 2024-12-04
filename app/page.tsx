@@ -3,6 +3,7 @@ import FeaturedProducts from "@/components/pages/home/FeaturedProducts";
 import OfferBanner from "@/components/pages/home/OfferBanner";
 import OnSaleProducts from "@/components/pages/home/OnSaleProducts";
 import ShopByCategory from "@/components/pages/home/ShopByCategory";
+import WhyChooseUs from "@/components/pages/home/WhyChooseUs";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "الرئيسية | متجري",
@@ -16,6 +17,7 @@ export default function Home() {
       <OnSaleProducts />
       <OfferBanner />
       <FeaturedProducts />
+      <WhyChooseUs />
     </>
   );
 }
