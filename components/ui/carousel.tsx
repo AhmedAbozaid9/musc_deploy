@@ -164,7 +164,7 @@ const Carousel = React.forwardRef<
           {...props}
         >
           {children}
-          <div className="absolute bottom-[-32px] right-0 w-full h-1 bg-gray-200">
+          <div className="absolute progress-bar bottom-[-32px] right-0 w-full h-1 bg-gray-200">
             <div
               className="h-full bg-black transition-transform duration-300"
               style={{

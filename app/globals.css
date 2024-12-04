@@ -10,7 +10,9 @@ body {
   --background: #fff;
   --text: #fff;
 }
-
+.galleryImage .progress-bar {
+  display: none;
+}
 @layer base {
   :root {
     --foreground: #1e1e1e;
