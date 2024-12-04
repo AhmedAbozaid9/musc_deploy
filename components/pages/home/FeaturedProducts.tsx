@@ -34,6 +34,7 @@ export default function FeaturedProducts() {
               <CarouselContent>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
                   <ProductCard
+                    link={routes?.Product?.POST("test")}
                     id={"1"}
                     offer={8}
                     image={"/pr.webp"}
@@ -44,6 +45,7 @@ export default function FeaturedProducts() {
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
                   <ProductCard
+                    link={routes?.Product?.POST("test")}
                     id={"1"}
                     offer={15}
                     image={"/pr.webp"}
@@ -54,6 +56,7 @@ export default function FeaturedProducts() {
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
                   <ProductCard
+                    link={routes?.Product?.POST("test")}
                     id={"1"}
                     offer={8}
                     image={"/pr.webp"}
@@ -64,6 +67,7 @@ export default function FeaturedProducts() {
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
                   <ProductCard
+                    link={routes?.Product?.POST("test")}
                     id={"1"}
                     offer={8}
                     image={"/pr.webp"}
@@ -74,6 +78,7 @@ export default function FeaturedProducts() {
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
                   <ProductCard
+                    link={routes?.Product?.POST("test")}
                     id={"1"}
                     offer={8}
                     image={"/pr.webp"}
@@ -84,6 +89,7 @@ export default function FeaturedProducts() {
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
                   <ProductCard
+                    link={routes?.Product?.POST("test")}
                     id={"1"}
                     offer={14}
                     image={"/pr.webp"}
@@ -94,6 +100,7 @@ export default function FeaturedProducts() {
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
                   <ProductCard
+                    link={routes?.Product?.POST("test")}
                     id={"1"}
                     offer={8}
                     image={"/pr.webp"}
