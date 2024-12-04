@@ -19,8 +19,11 @@ export default function FeaturedProducts() {
             <h2 className="lg:text-[40px] text-[20px] font-[600]">
               أطقم الصحي والتواليت
             </h2>
-            <Button className="bg-primary text-secondary" asChild>
-              <Link href={routes?.Shop}>
+            <Button className="bg-primary text-secondary w-fit" asChild>
+              <Link
+                href={routes?.Shop}
+                className="flex items-center gap-[16px]"
+              >
                 تسوق الان
                 <WhiteArrow />
               </Link>
