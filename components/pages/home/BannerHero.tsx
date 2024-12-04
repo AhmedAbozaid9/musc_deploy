@@ -1,5 +1,6 @@
 import BlackArrow from "@/components/Icons/BlackArrow";
 import { Button } from "@/components/ui/button";
+import routes from "@/lib/routes";
 import Link from "next/link";
 
 export default function BannerHero() {
@@ -25,7 +26,7 @@ export default function BannerHero() {
               العديد من النصوص الأخرى
             </p>
             <Button asChild>
-              <Link href="#">
+              <Link href={routes?.Shop}>
                 تسوق الان
                 <BlackArrow />
               </Link>

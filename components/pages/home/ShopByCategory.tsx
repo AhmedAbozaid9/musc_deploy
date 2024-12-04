@@ -1,6 +1,8 @@
 import CategoryBanner from "@/components/general/CategoryBanner";
 import WhiteArrow from "@/components/Icons/WhiteArrow";
 import { Button } from "@/components/ui/button";
+import routes from "@/lib/routes";
+import Link from "next/link";
 
 export default function ShopByCategory() {
   return (
@@ -12,8 +14,10 @@ export default function ShopByCategory() {
               تسوق حسب التصنيف
             </h2>
             <Button className="bg-primary text-secondary">
-              تسوق الان
-              <WhiteArrow />
+              <Link href={routes?.Shop}>
+                تسوق الان
+                <WhiteArrow />
+              </Link>
             </Button>
           </div>
           <div className="grid lg:grid-cols-2 grid-cols-1 gap-[32px] mt-[56px]">

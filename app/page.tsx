@@ -1,4 +1,6 @@
 import BannerHero from "@/components/pages/home/BannerHero";
+import FeaturedProducts from "@/components/pages/home/FeaturedProducts";
+import OfferBanner from "@/components/pages/home/OfferBanner";
 import OnSaleProducts from "@/components/pages/home/OnSaleProducts";
 import ShopByCategory from "@/components/pages/home/ShopByCategory";
 import { Metadata } from "next";
@@ -12,6 +14,8 @@ export default function Home() {
       <BannerHero />
       <ShopByCategory />
       <OnSaleProducts />
+      <OfferBanner />
+      <FeaturedProducts />
     </>
   );
 }

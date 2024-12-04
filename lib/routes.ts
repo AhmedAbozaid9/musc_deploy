@@ -5,6 +5,7 @@ const routes = {
   Login: "/login",
   Register: "/register",
   Offers: "/offers",
+  Shop: "/shop",
   Product: {
     POST: (slug: string) => `/product/${slug}`,
   },

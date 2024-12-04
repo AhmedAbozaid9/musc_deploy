@@ -10,16 +10,16 @@ import {
 } from "@/components/ui/carousel";
 import routes from "@/lib/routes";
 import Link from "next/link";
-export default function OnSaleProducts() {
+export default function FeaturedProducts() {
   return (
     <>
       <div className="lg:py-[60px] py-[32px]">
         <div className="container">
           <div className="flex justify-between items-center gap-[16px]">
             <h2 className="lg:text-[40px] text-[20px] font-[600]">
-              ⚡ لفتره محدوده
+              أطقم الصحي والتواليت
             </h2>
-            <Button className="bg-primary text-secondary">
+            <Button className="bg-primary text-secondary" asChild>
               <Link href={routes?.Shop}>
                 تسوق الان
                 <WhiteArrow />
