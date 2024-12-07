@@ -3,6 +3,7 @@ import "./globals.css";
 import { Alexandria } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Toaster } from "react-hot-toast";
 const alexandria = Alexandria({ subsets: ["arabic"] });
 export const metadata: Metadata = {
   title: {
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
   );
