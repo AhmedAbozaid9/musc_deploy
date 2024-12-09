@@ -19,7 +19,7 @@ export default function Footer() {
                 <Input
                   placeholder="البريد الالكتروني"
                   type="email"
-                  className="bg-secondary p-[24px] rounded-[44px] font-[300] text-[16px] lg:min-w-[340px]"
+                  className="bg-secondary text-primary p-[24px] rounded-[44px] font-[300] text-[16px] lg:min-w-[340px]"
                 />
                 <Button>
                   اشترك
