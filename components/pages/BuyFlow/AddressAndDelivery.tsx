@@ -8,7 +8,7 @@ export default function AddressAndDelivery() {
   return (
     <>
       <div>
-        <h2 className="lg:text-[32px] text-[24px] font-[600]">
+        <h2 className="lg:text-[32px] text-[20px] font-[600]">
           العنوان والتسليم
         </h2>
         <div className="flex flex-col gap-[24px] mt-[24px]">
