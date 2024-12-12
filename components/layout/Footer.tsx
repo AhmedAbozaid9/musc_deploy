@@ -79,7 +79,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex items-start lg:justify-between justify-center flex-wrap lg:flex-nowrap gap-[16px] mt-[24px]">
-            <h2>جميع الحقوق محفوطة لدي متجري © 2024</h2>
+            <h2>جميع الحقوق محفوطة لدي Musc © 2024</h2>
             <Image
               src="/payment.png"
               alt="Payment Accept"

@@ -60,6 +60,10 @@ export default function OrderSummary() {
             <h3 className="text-black text-[16px] font-[400]">الشحن</h3>
             <p className="text-black text-[16px] font-[400]">50 جم</p>
           </div>
+          <div className="flex items-center justify-between gap-[8px]">
+            <h3 className="text-black text-[16px] font-[400]">كود خصم</h3>
+            <p className="text-[#08B41A] text-[16px] font-[400]">-100 جم</p>
+          </div>
         </div>
       </div>
     </>

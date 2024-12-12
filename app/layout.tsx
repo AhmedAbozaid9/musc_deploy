@@ -7,8 +7,8 @@ import { Toaster } from "react-hot-toast";
 const alexandria = Alexandria({ subsets: ["arabic"] });
 export const metadata: Metadata = {
   title: {
-    template: "%s | متجري ",
-    default: "متجري",
+    template: "%s | Musc ",
+    default: "Musc",
   },
   description: "كل احتياجاتك من اللالكترونيات بأقوى الخصومات",
 };
