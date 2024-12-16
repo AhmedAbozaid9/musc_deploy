@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import CartHeader from "./CartHeader";
 import AddressAndDelivery from "./AddressAndDelivery";
 import OrderSummary from "./OrderSummary";
+import CartItems from "./CartItems";
 
 export default function MainCart() {
   const router = useRouter();
@@ -20,22 +21,17 @@ export default function MainCart() {
     }
   }, [router, searchParams]);
 
-  const changeStep = (newStep: string) => {
-    const currentParams = new URLSearchParams(searchParams.toString());
-    currentParams.set("step", newStep);
-    router.replace(`?${currentParams.toString()}`);
-  };
-
   return (
     <div className="container">
       <Brudcambs name="سلة التسوق" />
       <CartHeader />
       <div className="mt-[56px] flex items-start justify-between gap-[38px] lg:flex-row flex-col">
         <div className="lg:w-[56%] w-full">
-          {step === 1 && <AddressAndDelivery />}
+          {step === 1 && <CartItems />}
+          {step === 2 && <AddressAndDelivery />}
         </div>
         <div className="lg:w-[40%] w-full">
-          <OrderSummary />
+          {step === 2 && <OrderSummary />}
         </div>
       </div>
     </div>
