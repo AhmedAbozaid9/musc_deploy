@@ -7,6 +7,7 @@ import CartHeader from "./CartHeader";
 import AddressAndDelivery from "./AddressAndDelivery";
 import OrderSummary from "./OrderSummary";
 import CartItems from "./CartItems";
+import CartSummary from "./CartSummary";
 
 export default function MainCart() {
   const router = useRouter();
@@ -31,6 +32,7 @@ export default function MainCart() {
           {step === 2 && <AddressAndDelivery />}
         </div>
         <div className="lg:w-[40%] w-full">
+          {step === 1 && <CartSummary />}
           {step === 2 && <OrderSummary />}
         </div>
       </div>
