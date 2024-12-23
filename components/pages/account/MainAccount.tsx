@@ -1,5 +1,8 @@
 "use client";
+import ArrowLeft from "@/components/Icons/account/ArrowLeft";
+import Account from "@/components/pages/account/Account";
 import AccountLayout from "@/components/pages/account/AccountLayout";
+import AddressCard from "@/components/pages/account/AddressCard";
 import Addresses from "@/components/pages/account/Addresses";
 import BillsAndPayments from "@/components/pages/account/BillsAndPayments";
 import Orders from "@/components/pages/account/Orders";
@@ -15,16 +18,11 @@ const MainAccount = () => {
         <h2 className="font-semibold text-lg sm:text-2xl mb-3">{title}</h2>
         <hr />
         <div className="mt-6">
-          {slug === "account" && (
-            <>
-              <Orders slug={slug} setSlug={setSlug} />
-              <div className="my-4" />
-              <BillsAndPayments slug={slug} setSlug={setSlug} />
-            </>
-          )}
+          {slug === "account" && <Account slug={slug} setSlug={setSlug} />}
           {slug === "orders" && <Orders />}
           {slug === "bills" && <BillsAndPayments />}
           {slug === "addresses" && <Addresses />}
+          {slug === "favorites" && <Addresses />}
         </div>
       </AccountLayout>
     </div>
