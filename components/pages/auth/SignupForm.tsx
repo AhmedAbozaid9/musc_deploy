@@ -41,10 +41,10 @@ const SignupForm = ({ handleSignup }: SignupFormProps) => {
       </div>
       <div>
         <Label>رقم الهاتف </Label>
-        <Input {...register("phonenumbers")} type="tel" className="mt-2" />
-        {errors.phonenumbers && (
+        <Input {...register("phoneNumbers")} type="tel" className="mt-2" />
+        {errors.phoneNumbers && (
           <p className="text-sm mt-2 text-red-400">
-            {errors.phonenumbers.message}
+            {errors.phoneNumbers.message}
           </p>
         )}
       </div>
