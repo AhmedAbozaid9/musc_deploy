@@ -5,6 +5,7 @@ import AccountLayout from "@/components/pages/account/AccountLayout";
 import AddressCard from "@/components/pages/account/AddressCard";
 import Addresses from "@/components/pages/account/Addresses";
 import BillsAndPayments from "@/components/pages/account/BillsAndPayments";
+import Favorites from "@/components/pages/account/Favorites";
 import Orders from "@/components/pages/account/Orders";
 import { sidebarContent } from "@/constants/sidebarContent";
 import React, { useState } from "react";
@@ -22,7 +23,7 @@ const MainAccount = () => {
           {slug === "orders" && <Orders />}
           {slug === "bills" && <BillsAndPayments />}
           {slug === "addresses" && <Addresses />}
-          {slug === "favorites" && <Addresses />}
+          {slug === "favorites" && <Favorites />}
         </div>
       </AccountLayout>
     </div>

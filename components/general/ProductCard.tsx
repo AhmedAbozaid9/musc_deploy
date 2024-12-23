@@ -10,6 +10,7 @@ interface ProductType {
   name: string;
   price: string;
   link: string;
+  isInFavorites?: boolean;
 }
 const ProductCard: React.FC<ProductType> = ({
   id,
@@ -19,12 +20,13 @@ const ProductCard: React.FC<ProductType> = ({
   name,
   price,
   link,
+  isInFavorites,
 }) => {
   return (
     <>
       <div className="flex flex-col gap-[24px]">
         <div
-          className="rounded-[32px] h-[430px] px-[32px] py-[20px] flex flex-col justify-between group"
+          className="rounded-[32px] h-[430px] min-w-[430px] px-[32px] py-[20px] flex flex-col justify-between group"
           style={{ background: `url(${image})`, backgroundSize: "cover" }}
         >
           <div className="flex justify-between items-center">
@@ -37,9 +39,11 @@ const ProductCard: React.FC<ProductType> = ({
                 </div>
               )}
             </div>
-            <button className="bg-[#ffffff4c] rounded-full p-2">
-              <Whishlist />
-            </button>
+            {!isInFavorites && (
+              <button className="bg-[#ffffff4c] rounded-full p-2">
+                <Whishlist />
+              </button>
+            )}
           </div>
           <Button className="w-full transition-all lg:opacity-0 group-hover:opacity-[1]">
             اشتري الان
