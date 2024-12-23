@@ -13,6 +13,17 @@ export default function MainCart() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const step = parseInt(searchParams.get("step") || "1", 10);
+
+  const handleStepChange = (step: string) => {
+    const params = new URLSearchParams(searchParams?.toString() || "");
+    params.set("step", step);
+
+    const newQueryString = params.toString();
+    const newUrl = `?${newQueryString}`;
+
+    router.push(newUrl);
+  };
+
   useEffect(() => {
     if (!searchParams.get("step")) {
       const currentParams = new URLSearchParams(searchParams.toString());
@@ -32,7 +43,7 @@ export default function MainCart() {
           {step === 2 && <AddressAndDelivery />}
         </div>
         <div className="lg:w-[40%] w-full">
-          {step === 1 && <CartSummary />}
+          {step === 1 && <CartSummary handleStepChange={handleStepChange} />}
           {step === 2 && <OrderSummary />}
         </div>
       </div>
