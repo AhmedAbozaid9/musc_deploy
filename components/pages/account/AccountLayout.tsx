@@ -1,21 +1,9 @@
 import Brudcambs from "@/components/general/Brudcambs";
-import Addresses from "@/components/Icons/account/Addresses";
-import Bills from "@/components/Icons/account/Bills";
-import Favorites from "@/components/Icons/account/Favorites";
-import MyAccount from "@/components/Icons/account/MyAccount";
-import Orders from "@/components/Icons/account/Orders";
-import Settings from "@/components/Icons/account/Settings";
+
 import User from "@/components/Icons/account/User";
+import { sidebarContent } from "@/constants/sidebarContent";
 import React, { ReactNode } from "react";
 
-const sidebarContent = [
-  { slug: "account", title: "حسابي", icon: <MyAccount /> },
-  { slug: "orders", title: "الطلبات", icon: <Orders /> },
-  { slug: "addresses", title: "العناوين", icon: <Addresses /> },
-  { slug: "bills", title: "الدفغ و الفواتير", icon: <Bills /> },
-  { slug: "favorites", title: "المفضلة", icon: <Favorites /> },
-  { slug: "settings", title: "الاعدادات", icon: <Settings /> },
-];
 interface LayoutProps {
   children: ReactNode;
   slug: string;
@@ -26,7 +14,7 @@ const AccountLayout = ({ children, slug, setSlug }: LayoutProps) => {
     <div className="container">
       <Brudcambs name="حسابي " />
       <div className="flex max-sm:flex-col gap-6">
-        <div className="flex flex-col gap-6 lg:w-1/4">
+        <div className="flex flex-col gap-6 lg:w-1/3">
           <div className="flex items-center gap-3 bg-black text-white p-7 rounded-[32px]">
             <User />
             <div>
@@ -38,7 +26,7 @@ const AccountLayout = ({ children, slug, setSlug }: LayoutProps) => {
             <button
               onClick={() => setSlug(item.slug)}
               key={item.slug}
-              className={`flex items-center gap-3 px-5 py-3 ${slug === item.slug && "border border-black rounded-l-full border-r-8"}`}
+              className={`flex items-center gap-3 px-5 py-3 ${slug === item.slug && "bg-white border border-black rounded-l-full border-r-8"}`}
             >
               {item.icon}
               <p
@@ -49,7 +37,7 @@ const AccountLayout = ({ children, slug, setSlug }: LayoutProps) => {
             </button>
           ))}
         </div>
-        <div>{children}</div>
+        <div className="w-full">{children}</div>
       </div>
     </div>
   );
