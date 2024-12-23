@@ -1,5 +1,6 @@
 "use client";
 import AccountLayout from "@/components/pages/account/AccountLayout";
+import Addresses from "@/components/pages/account/Addresses";
 import BillsAndPayments from "@/components/pages/account/BillsAndPayments";
 import Orders from "@/components/pages/account/Orders";
 import { sidebarContent } from "@/constants/sidebarContent";
@@ -23,6 +24,7 @@ const MainAccount = () => {
           )}
           {slug === "orders" && <Orders />}
           {slug === "bills" && <BillsAndPayments />}
+          {slug === "addresses" && <Addresses />}
         </div>
       </AccountLayout>
     </div>
