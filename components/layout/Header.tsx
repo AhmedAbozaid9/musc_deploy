@@ -1,9 +1,10 @@
 "use client";
 import MainAuth from "@/components/pages/auth/MainAuth";
+import { useAuthStore } from "@/store/useAuthStore";
 import Link from "next/link";
 import Logo from "../Icons/Logo";
 import { HeaderLinks, HeaderType } from "@/store/Links";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import CartIcon from "../Icons/CartIcon";
 import UserIcon from "../Icons/UserIcon";
@@ -18,6 +19,8 @@ import {
 } from "@/components/ui/sheet";
 import { useState } from "react";
 export default function Header() {
+  const router = useRouter();
+  const user = useAuthStore((state) => state.user);
   const [showSignup, setShowSignup] = useState(false);
   const path = usePathname();
   const [SideBar, setSidebar] = useState(false);
@@ -52,7 +55,9 @@ export default function Header() {
                 </Link>
               </Button>
               <Button
-                onClick={() => setShowSignup(true)}
+                onClick={() =>
+                  !user ? router.push("/account") : setShowSignup(true)
+                }
                 variant="link"
                 size={"icon"}
               >
