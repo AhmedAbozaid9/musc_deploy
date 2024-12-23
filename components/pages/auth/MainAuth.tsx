@@ -1,5 +1,6 @@
 import SignInForm from "@/components/pages/auth/SignInForm";
 import SignupForm from "@/components/pages/auth/SignupForm";
+import { SigninFormTypes } from "@/schemas/SigninSchema";
 import { SignupFormTypes } from "@/schemas/SignupSchema";
 import React from "react";
 import {
@@ -21,6 +22,10 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
   const handleSignup = async (data: SignupFormTypes) => {
     console.log(data);
   };
+  const handeSignin = async (data: SigninFormTypes) => {
+    console.log(data);
+  };
+
   return (
     <Dialog open={showSignup} onOpenChange={setShowSignup}>
       <DialogTrigger>Open</DialogTrigger>
@@ -35,7 +40,7 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="signin">
-            <SignInForm />
+            <SignInForm handleSignin={handeSignin} />
           </TabsContent>
           <TabsContent value="signup">
             <SignupForm handleSignup={handleSignup} />
