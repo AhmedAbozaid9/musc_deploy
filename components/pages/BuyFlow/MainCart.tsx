@@ -1,6 +1,8 @@
 "use client";
 
 import Brudcambs from "@/components/general/Brudcambs";
+import ConfirmPurchase from "@/components/pages/BuyFlow/ConfirmPurchase";
+import ConfirmPurchaseDetails from "@/components/pages/BuyFlow/ConfirmPurchaseDetails";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import CartHeader from "./CartHeader";
@@ -44,9 +46,15 @@ export default function MainCart() {
         </div>
         <div className="lg:w-[40%] w-full">
           {step === 1 && <CartSummary handleStepChange={handleStepChange} />}
-          {step === 2 && <OrderSummary />}
+          {step === 2 && <OrderSummary handleStepChange={handleStepChange} />}
         </div>
       </div>
+      {step === 3 && (
+        <div>
+          <ConfirmPurchase />
+          <ConfirmPurchaseDetails />
+        </div>
+      )}
     </div>
   );
 }

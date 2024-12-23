@@ -3,7 +3,11 @@ import WhiteArrow from "@/components/Icons/WhiteArrow";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-export default function OrderSummary() {
+interface OrderSummaryProps {
+  handleStepChange: (step: string) => void;
+}
+
+export default function OrderSummary({ handleStepChange }: OrderSummaryProps) {
   return (
     <>
       <div className="flex items-center justify-between">
@@ -83,7 +87,10 @@ export default function OrderSummary() {
             </h4>
           </div>
 
-          <Button className="bg-primary text-secondary w-full lg:mt-[80px] mt-[40px]">
+          <Button
+            onClick={() => handleStepChange("3")}
+            className="bg-primary text-secondary w-full lg:mt-[80px] mt-[40px]"
+          >
             الحفظ و الاستمرار <WhiteArrow />
           </Button>
         </div>

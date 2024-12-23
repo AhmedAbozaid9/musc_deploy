@@ -17,6 +17,7 @@ export default {
     },
     extend: {
       colors: {
+        secondaryText: "#5C5C5C",
         background: "var(--background)",
         foreground: "var(--foreground)",
         card: {
