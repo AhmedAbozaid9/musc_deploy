@@ -24,9 +24,8 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
   return (
     <Dialog open={showSignup} onOpenChange={setShowSignup}>
       <DialogTrigger>Open</DialogTrigger>
-      <DialogContent className=" flex flex-col justify-center items-center">
-        <DialogHeader></DialogHeader>
-        <Tabs defaultValue="signin" className="w-[400px]">
+      <DialogContent className=" flex flex-col justify-center items-center ">
+        <Tabs defaultValue="signin" className="mt-3 w-full">
           <TabsList className=" w-full flex justify-center rounded-full bg-black">
             <TabsTrigger value="signup" className="w-full rounded-full">
               اشتراك
