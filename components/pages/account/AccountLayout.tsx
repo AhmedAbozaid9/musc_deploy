@@ -5,6 +5,7 @@ import Favorites from "@/components/Icons/account/Favorites";
 import MyAccount from "@/components/Icons/account/MyAccount";
 import Orders from "@/components/Icons/account/Orders";
 import Settings from "@/components/Icons/account/Settings";
+import User from "@/components/Icons/account/User";
 import React, { ReactNode } from "react";
 
 const sidebarContent = [
@@ -24,24 +25,32 @@ const AccountLayout = ({ children, slug, setSlug }: LayoutProps) => {
   return (
     <div className="container">
       <Brudcambs name="حسابي " />
-
-      <div className="flex flex-col gap-6 lg:w-1/4">
-        {sidebarContent.map((item) => (
-          <button
-            onClick={() => setSlug(item.slug)}
-            key={item.slug}
-            className={`flex items-center gap-3 px-5 py-3 ${slug === item.slug && "border border-black rounded-l-full border-r-8"}`}
-          >
-            {item.icon}
-            <p
-              className={`${slug === item.slug ? "text-black" : "text-secondaryText"} `}
+      <div className="flex max-sm:flex-col gap-6">
+        <div className="flex flex-col gap-6 lg:w-1/4">
+          <div className="flex items-center gap-3 bg-black text-white p-7 rounded-[32px]">
+            <User />
+            <div>
+              <p className="text-lg">محمد امين</p>
+              <p>01210372819</p>
+            </div>
+          </div>
+          {sidebarContent.map((item) => (
+            <button
+              onClick={() => setSlug(item.slug)}
+              key={item.slug}
+              className={`flex items-center gap-3 px-5 py-3 ${slug === item.slug && "border border-black rounded-l-full border-r-8"}`}
             >
-              {item.title}
-            </p>
-          </button>
-        ))}
+              {item.icon}
+              <p
+                className={`${slug === item.slug ? "text-black" : "text-secondaryText"} `}
+              >
+                {item.title}
+              </p>
+            </button>
+          ))}
+        </div>
+        <div>{children}</div>
       </div>
-      <div>{children}</div>
     </div>
   );
 };
