@@ -1,7 +1,7 @@
 import React from "react";
 
 const SignInForm = () => {
-  return <div>sign in</div>;
+  return <form className="mt-6">sign in</form>;
 };
 
 export default SignInForm;

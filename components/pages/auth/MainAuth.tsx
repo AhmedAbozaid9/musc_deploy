@@ -1,5 +1,6 @@
 import SignInForm from "@/components/pages/auth/SignInForm";
 import SignupForm from "@/components/pages/auth/SignupForm";
+import { SignupFormTypes } from "@/schemas/SignupSchema";
 import React from "react";
 import {
   Dialog,
@@ -17,6 +18,9 @@ interface MainAuthProps {
 }
 
 const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
+  const handleSignup = async (data: SignupFormTypes) => {
+    console.log(data);
+  };
   return (
     <Dialog open={showSignup} onOpenChange={setShowSignup}>
       <DialogTrigger>Open</DialogTrigger>
@@ -24,10 +28,10 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
         <DialogHeader></DialogHeader>
         <Tabs defaultValue="signin" className="w-[400px]">
           <TabsList className=" w-full flex justify-center rounded-full bg-black">
-            <TabsTrigger value="signin" className="w-full rounded-full">
+            <TabsTrigger value="signup" className="w-full rounded-full">
               اشتراك
             </TabsTrigger>
-            <TabsTrigger value="signup" className="w-full rounded-full ">
+            <TabsTrigger value="signin" className="w-full rounded-full ">
               تسجيل الدخول
             </TabsTrigger>
           </TabsList>
@@ -35,7 +39,7 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
             <SignInForm />
           </TabsContent>
           <TabsContent value="signup">
-            <SignupForm />
+            <SignupForm handleSignup={handleSignup} />
           </TabsContent>
         </Tabs>
       </DialogContent>
