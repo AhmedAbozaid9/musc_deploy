@@ -1,3 +1,4 @@
+import { signIn } from "@/apiRequests/auth/signIn";
 import SignInForm from "@/components/pages/auth/SignInForm";
 import SignupForm from "@/components/pages/auth/SignupForm";
 import { SigninFormTypes } from "@/schemas/SigninSchema";
@@ -12,6 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import toast from "react-hot-toast";
 
 interface MainAuthProps {
   showSignup: boolean;
@@ -23,7 +25,13 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
     console.log(data);
   };
   const handeSignin = async (data: SigninFormTypes) => {
-    console.log(data);
+    try {
+      const response = await signIn(data);
+      toast.success("تم تسحيل الدخول");
+    } catch (err) {
+      toast.error("حدث خطأ");
+      console.log(err);
+    }
   };
 
   return (
