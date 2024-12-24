@@ -1,6 +1,17 @@
 import CouponCode from "@/components/general/CouponCode";
+import WhiteArrow from "@/components/Icons/WhiteArrow";
+import { Button } from "@/components/ui/button";
+import { useRouter, useSearchParams } from "next/navigation";
+import React from "react";
 
-export default function CartSummary() {
+interface CartSummaryProps {
+  handleStepChange: (step: string) => void;
+}
+
+export default function CartSummary({ handleStepChange }: CartSummaryProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   return (
     <>
       <div className="px-[16px] py-[32px] border border-[#DEDEDE] bg-[#FAFAFA] rounded-[32px]">
@@ -20,6 +31,13 @@ export default function CartSummary() {
             <p className="text-[#1E1E1E] text-[24px] font-[500]">200 جم</p>
           </div>
         </div>
+        <Button
+          onClick={() => handleStepChange("2")}
+          className="bg-primary text-secondary w-full lg:mt-[80px] mt-[40px]"
+        >
+          إتمام الشراء
+          <WhiteArrow />
+        </Button>
       </div>
     </>
   );

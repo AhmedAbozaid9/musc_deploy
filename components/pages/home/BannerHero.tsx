@@ -10,7 +10,7 @@ export default function BannerHero() {
         <div
           className="lg:h-[80vh] h-[60vh] rounded-[32px] bg-cover flex flex-col justify-between lg:p-[40px] px-[12px] py-[32px]"
           style={{
-            background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 77.87%, rgba(0, 0, 0, 0.20) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.20) 16.67%, rgba(0, 0, 0, 0.00) 65.05%), linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url(/bg-hero.webp) lightgray 50% / cover no-repeat;`,
+            background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 77.87%, rgba(0, 0, 0, 0.20) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.20) 16.67%, rgba(0, 0, 0, 0.00) 65.05%), linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url(/bg-hero.webp) lightgray 50% / cover no-repeat`,
           }}
         >
           <div></div>
