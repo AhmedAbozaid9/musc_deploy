@@ -6,6 +6,7 @@ import Logout from "@/components/Icons/account/Logout";
 import User from "@/components/Icons/account/User";
 import { sidebarContent } from "@/constants/sidebarContent";
 import { useAuthStore } from "@/store/useAuthStore";
+import { useRouter } from "next/navigation";
 import React, { ReactNode, useEffect, useState } from "react";
 
 interface LayoutProps {
@@ -15,8 +16,14 @@ interface LayoutProps {
 }
 const AccountLayout = ({ children, slug, setSlug }: LayoutProps) => {
   const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
   const user = useAuthStore((state) => state.user);
+  const setUser = useAuthStore((state) => state.setUser);
 
+  const handleLogout = () => {
+    setUser(null);
+    router.push("/");
+  };
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -53,7 +60,10 @@ const AccountLayout = ({ children, slug, setSlug }: LayoutProps) => {
               </p>
             </button>
           ))}
-          <button className="text-[#EE2D47] border-2 border-[#EE2D47] py-4 px-8 rounded-md flex gap-3 items-center">
+          <button
+            onClick={handleLogout}
+            className="text-[#EE2D47] border-2 border-[#EE2D47] py-4 px-8 rounded-md flex gap-3 items-center"
+          >
             <Logout />
             تسجيل الخروج
           </button>
