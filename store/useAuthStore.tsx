@@ -2,14 +2,16 @@
 import { useEffect } from "react";
 import { create } from "zustand";
 
-interface User {
-  name: string;
+export interface UserTypes {
+  username: string;
   email: string;
+  phoneNumber: number;
+  isEmailVerified: boolean;
 }
 
 interface AuthState {
-  user: User | null;
-  setUser: (user: User | null) => void;
+  user: UserTypes | null;
+  setUser: (user: UserTypes | null) => void;
 }
 
 const getInitialUser = () => {
