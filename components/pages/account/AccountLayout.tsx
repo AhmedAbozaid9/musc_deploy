@@ -1,8 +1,11 @@
+"ude client";
 import Brudcambs from "@/components/general/Brudcambs";
+import Loading from "@/components/general/Loading";
 
 import User from "@/components/Icons/account/User";
 import { sidebarContent } from "@/constants/sidebarContent";
-import React, { ReactNode } from "react";
+import { useAuthStore } from "@/store/useAuthStore";
+import React, { ReactNode, useEffect, useState } from "react";
 
 interface LayoutProps {
   children: ReactNode;
@@ -10,6 +13,17 @@ interface LayoutProps {
   setSlug: React.Dispatch<React.SetStateAction<string>>;
 }
 const AccountLayout = ({ children, slug, setSlug }: LayoutProps) => {
+  const [isClient, setIsClient] = useState(false);
+  const user = useAuthStore((state) => state.user);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return <Loading />;
+  }
+
   return (
     <div className="container">
       <Brudcambs name="حسابي " />
@@ -17,10 +31,12 @@ const AccountLayout = ({ children, slug, setSlug }: LayoutProps) => {
         <div className="flex flex-col gap-6 lg:w-1/3">
           <div className="flex items-center gap-3 bg-black text-white p-7 rounded-[32px]">
             <User />
-            <div>
-              <p className="text-lg">محمد امين</p>
-              <p>01210372819</p>
-            </div>
+            {user && (
+              <div>
+                <p className="text-lg"> {user.username}</p>
+                <p>{user.phoneNumber}</p>
+              </div>
+            )}
           </div>
           {sidebarContent.map((item) => (
             <button
