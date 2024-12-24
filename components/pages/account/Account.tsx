@@ -13,10 +13,10 @@ const Account = ({ slug, setSlug }: AccountProps) => {
   return (
     <div>
       <Orders slug={slug} setSlug={setSlug} />
-      <div className="my-4" />
-      <div className="flex gap-6">
+      <div className="my-7" />
+      <div className="flex gap-7">
         <BillsAndPayments slug={slug} setSlug={setSlug} />
-        <div className="w-1/3">
+        <div>
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-semibold mb-4">العناوين</h3>
             <button

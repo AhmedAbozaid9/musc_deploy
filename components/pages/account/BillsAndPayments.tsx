@@ -16,7 +16,7 @@ interface BillsProps {
 
 const BillsAndPayments = ({ slug, setSlug }: BillsProps) => {
   return (
-    <div>
+    <div className="w-full">
       {slug === "account" && setSlug && (
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-semibold mb-4">الدفع و الفواتير</h3>

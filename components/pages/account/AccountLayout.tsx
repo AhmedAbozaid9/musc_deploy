@@ -1,6 +1,7 @@
 "ude client";
 import Brudcambs from "@/components/general/Brudcambs";
 import Loading from "@/components/general/Loading";
+import Logout from "@/components/Icons/account/Logout";
 
 import User from "@/components/Icons/account/User";
 import { sidebarContent } from "@/constants/sidebarContent";
@@ -52,6 +53,10 @@ const AccountLayout = ({ children, slug, setSlug }: LayoutProps) => {
               </p>
             </button>
           ))}
+          <button className="text-[#EE2D47] border-2 border-[#EE2D47] py-4 px-8 rounded-md flex gap-3 items-center">
+            <Logout />
+            تسجيل الخروج
+          </button>
         </div>
         <div className="w-full">{children}</div>
       </div>
