@@ -7,6 +7,7 @@ import Addresses from "@/components/pages/account/Addresses";
 import BillsAndPayments from "@/components/pages/account/BillsAndPayments";
 import Favorites from "@/components/pages/account/Favorites";
 import Orders from "@/components/pages/account/Orders";
+import Settings from "@/components/pages/account/Settings";
 import { sidebarContent } from "@/constants/sidebarContent";
 import React, { useState } from "react";
 
@@ -24,6 +25,7 @@ const MainAccount = () => {
           {slug === "bills" && <BillsAndPayments />}
           {slug === "addresses" && <Addresses />}
           {slug === "favorites" && <Favorites />}
+          {slug === "settings" && <Settings />}
         </div>
       </AccountLayout>
     </div>

@@ -4,6 +4,7 @@ import SignInForm from "@/components/pages/auth/SignInForm";
 import SignupForm from "@/components/pages/auth/SignupForm";
 import { SigninFormTypes } from "@/schemas/SigninSchema";
 import { SignupFormTypes } from "@/schemas/SignupSchema";
+import { useAuthStore } from "@/store/useAuthStore";
 import React from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,10 +16,13 @@ interface MainAuthProps {
 }
 
 const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
+  const setUser = useAuthStore((state) => state.setUser);
   const handleSignup = async (data: SignupFormTypes) => {
     try {
       const response = await signUp({ ...data, age: parseInt(data.age) });
       toast.success("تم تسحيل الدخول");
+      setUser(response);
+      setShowSignup(false);
     } catch (err) {
       toast.error("حدث خطأ");
       console.log(err);
@@ -28,6 +32,8 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
     try {
       const response = await signIn(data);
       toast.success("تم تسحيل الدخول");
+      setUser(response);
+      setShowSignup(false);
     } catch (err) {
       toast.error("حدث خطأ");
       console.log(err);

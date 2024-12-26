@@ -22,7 +22,7 @@ axios.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response && error.response.status === 401) {
+    if (error.response && error.response.message === "jwt expired") {
       Cookies.remove("musc-token");
       window.location.href = "/login";
     }

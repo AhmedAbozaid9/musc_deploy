@@ -56,7 +56,7 @@ export default function Header() {
               </Button>
               <Button
                 onClick={() =>
-                  !user ? router.push("/account") : setShowSignup(true)
+                  user ? router.push("/account") : setShowSignup(true)
                 }
                 variant="link"
                 size={"icon"}
