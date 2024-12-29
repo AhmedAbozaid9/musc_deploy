@@ -13,7 +13,7 @@ const Favorites = () => {
         image={"/pr.webp"}
         category={"تلفزيونات"}
         name={"تلفزيون LG"}
-        price={"18000"}
+        price={18000}
       />
       <ProductCard
         isInFavorites={true}
@@ -23,7 +23,7 @@ const Favorites = () => {
         image={"/pr.webp"}
         category={"تلفزيونات"}
         name={"تلفزيون LG"}
-        price={"18000"}
+        price={18000}
       />
       <ProductCard
         isInFavorites={true}
@@ -33,7 +33,7 @@ const Favorites = () => {
         image={"/pr.webp"}
         category={"تلفزيونات"}
         name={"تلفزيون LG"}
-        price={"18000"}
+        price={18000}
       />
     </div>
   );
