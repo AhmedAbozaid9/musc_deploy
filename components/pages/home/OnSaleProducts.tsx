@@ -1,3 +1,5 @@
+"use client";
+import { getBestSelling } from "@/apiRequests/products/getBestSelling";
 import ProductCard from "@/components/general/ProductCard";
 import WhiteArrow from "@/components/Icons/WhiteArrow";
 import { Button } from "@/components/ui/button";
@@ -9,8 +11,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import routes from "@/lib/routes";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 export default function OnSaleProducts() {
+  const { data: products } = useQuery(["bestSelling"], getBestSelling);
   return (
     <>
       <div className="lg:py-[60px] py-[32px]">
@@ -32,83 +36,22 @@ export default function OnSaleProducts() {
           <div className="mt-[56px]">
             <Carousel>
               <CarouselContent>
-                <CarouselItem className="lg:basis-[30%] basis-[85%]">
-                  <ProductCard
-                    link={routes?.Product?.POST("test")}
-                    id={"1"}
-                    offer={8}
-                    image={"/pr.webp"}
-                    category={"تلفزيونات"}
-                    name={"تلفزيون LG"}
-                    price={"18000"}
-                  />
-                </CarouselItem>
-                <CarouselItem className="lg:basis-[30%] basis-[85%]">
-                  <ProductCard
-                    link={routes?.Product?.POST("test")}
-                    id={"1"}
-                    offer={15}
-                    image={"/pr.webp"}
-                    category={"تيست"}
-                    name={"تلفزيون LG"}
-                    price={"18000"}
-                  />
-                </CarouselItem>
-                <CarouselItem className="lg:basis-[30%] basis-[85%]">
-                  <ProductCard
-                    link={routes?.Product?.POST("test")}
-                    id={"1"}
-                    offer={8}
-                    image={"/pr.webp"}
-                    category={"تلفزيونات"}
-                    name={"تلفزيون LG"}
-                    price={"18000"}
-                  />
-                </CarouselItem>
-                <CarouselItem className="lg:basis-[30%] basis-[85%]">
-                  <ProductCard
-                    link={routes?.Product?.POST("test")}
-                    id={"1"}
-                    offer={8}
-                    image={"/pr.webp"}
-                    category={"تلفزيونات"}
-                    name={"تلفزيون LG"}
-                    price={"18000"}
-                  />
-                </CarouselItem>
-                <CarouselItem className="lg:basis-[30%] basis-[85%]">
-                  <ProductCard
-                    link={routes?.Product?.POST("test")}
-                    id={"1"}
-                    offer={8}
-                    image={"/pr.webp"}
-                    category={"تلفزيونات"}
-                    name={"تلفزيون LG"}
-                    price={"18000"}
-                  />
-                </CarouselItem>
-                <CarouselItem className="lg:basis-[30%] basis-[85%]">
-                  <ProductCard
-                    link={routes?.Product?.POST("test")}
-                    id={"1"}
-                    offer={14}
-                    image={"/pr.webp"}
-                    category={"تلفزيونات"}
-                    name={"تلفزيون LG"}
-                    price={"18000"}
-                  />
-                </CarouselItem>
-                <CarouselItem className="lg:basis-[30%] basis-[85%]">
-                  <ProductCard
-                    link={routes?.Product?.POST("test")}
-                    id={"1"}
-                    offer={8}
-                    image={"/pr.webp"}
-                    category={"تلفزيونات"}
-                    name={"تلفزيون LG"}
-                    price={"18000"}
-                  />
-                </CarouselItem>
+                {products?.map((product) => (
+                  <CarouselItem
+                    key={product.id}
+                    className="lg:basis-[30%] basis-[85%]"
+                  >
+                    <ProductCard
+                      link={routes?.Product?.POST(product.id)}
+                      id={product.id}
+                      offer={product.discountPercentage}
+                      image={product.imageCover}
+                      category={"test"}
+                      name={product.title}
+                      price={product.priceAfterDiscount}
+                    />
+                  </CarouselItem>
+                ))}
               </CarouselContent>
               <CarouselPrevious className="p-1 justify-center" />
               <CarouselNext className="p-1 justify-center" />

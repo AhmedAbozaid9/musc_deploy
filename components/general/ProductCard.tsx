@@ -8,7 +8,7 @@ interface ProductType {
   image: string;
   category: string;
   name: string;
-  price: string;
+  price: number;
   link: string;
   isInFavorites?: boolean;
 }
