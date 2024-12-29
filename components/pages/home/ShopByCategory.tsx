@@ -1,10 +1,15 @@
+"use client";
+import { getCategories } from "@/apiRequests/products/getCategories";
 import CategoryBanner from "@/components/general/CategoryBanner";
 import WhiteArrow from "@/components/Icons/WhiteArrow";
 import { Button } from "@/components/ui/button";
 import routes from "@/lib/routes";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
 export default function ShopByCategory() {
+  const { data: categories } = useQuery(["categories"], getCategories);
+  console.log(categories);
   return (
     <>
       <div className="lg:py-[60px] py-[32px]">
@@ -13,7 +18,7 @@ export default function ShopByCategory() {
             <h2 className="lg:text-[40px] text-[24px] font-[600]">
               تسوق حسب التصنيف
             </h2>
-            <Button className="bg-primary text-secondary w-fit">
+            {/* <Button className="bg-primary text-secondary w-fit">
               <Link
                 href={routes?.Shop}
                 className="flex items-center gap-[16px]"
@@ -21,19 +26,17 @@ export default function ShopByCategory() {
                 تسوق الان
                 <WhiteArrow />
               </Link>
-            </Button>
+            </Button> */}
           </div>
           <div className="grid lg:grid-cols-2 grid-cols-1 gap-[32px] mt-[56px]">
-            <CategoryBanner
-              image={"/cat1.webp"}
-              title={"أدوات كهربائية"}
-              link={"#"}
-            />
-            <CategoryBanner
-              image={"/cat2.webp"}
-              title={"أدوات صحية"}
-              link={"#"}
-            />
+            {categories?.map((category) => (
+              <CategoryBanner
+                key={category.id}
+                image={category.image}
+                title={category.title}
+                link={"#"}
+              />
+            ))}
           </div>
         </div>
       </div>
