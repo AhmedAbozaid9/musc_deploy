@@ -36,7 +36,7 @@ export default function MainSingleCategory() {
           image={"/pr.webp"}
           category={"تلفزيونات"}
           name={"تلفزيون LG"}
-          price={"18000"}
+          price={18000}
         />
         <ProductCard
           link={routes?.Product?.POST("test")}
@@ -45,7 +45,7 @@ export default function MainSingleCategory() {
           image={"/pr.webp"}
           category={"تلفزيونات"}
           name={"تلفزيون LG"}
-          price={"18000"}
+          price={18000}
         />
         <ProductCard
           link={routes?.Product?.POST("test")}
@@ -54,7 +54,7 @@ export default function MainSingleCategory() {
           image={"/pr.webp"}
           category={"تلفزيونات"}
           name={"تلفزيون LG"}
-          price={"18000"}
+          price={18000}
         />
         <ProductCard
           link={routes?.Product?.POST("test")}
@@ -63,7 +63,7 @@ export default function MainSingleCategory() {
           image={"/pr.webp"}
           category={"تلفزيونات"}
           name={"تلفزيون LG"}
-          price={"18000"}
+          price={18000}
         />
         <ProductCard
           link={routes?.Product?.POST("test")}
@@ -72,7 +72,7 @@ export default function MainSingleCategory() {
           image={"/pr.webp"}
           category={"تلفزيونات"}
           name={"تلفزيون LG"}
-          price={"18000"}
+          price={18000}
         />
         <ProductCard
           link={routes?.Product?.POST("test")}
@@ -81,7 +81,7 @@ export default function MainSingleCategory() {
           image={"/pr.webp"}
           category={"تلفزيونات"}
           name={"تلفزيون LG"}
-          price={"18000"}
+          price={18000}
         />
         <ProductCard
           link={routes?.Product?.POST("test")}
@@ -90,7 +90,7 @@ export default function MainSingleCategory() {
           image={"/pr.webp"}
           category={"تلفزيونات"}
           name={"تلفزيون LG"}
-          price={"18000"}
+          price={18000}
         />
       </div>
     </div>
