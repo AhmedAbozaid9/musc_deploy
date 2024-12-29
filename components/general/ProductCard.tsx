@@ -2,6 +2,7 @@ import Link from "next/link";
 import CartButton from "../Icons/CartButton";
 import Whishlist from "../Icons/Whishlist";
 import { Button } from "../ui/button";
+
 interface ProductType {
   id: string;
   offer?: number | null;
@@ -45,10 +46,12 @@ const ProductCard: React.FC<ProductType> = ({
               </button>
             )}
           </div>
-          <Button className="w-full transition-all lg:opacity-0 group-hover:opacity-[1]">
-            اشتري الان
-            <CartButton />
-          </Button>
+          <Link className="w-full" href={`/product/${id}`}>
+            <Button className="w-full transition-all lg:opacity-0 group-hover:opacity-[1]">
+              اشتري الان
+              <CartButton />
+            </Button>
+          </Link>
         </div>
         <div className="flex items-center justify-between gap-[16px] px-[12px]">
           <div className="flex flex-col gap-[12px]">
