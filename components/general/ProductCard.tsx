@@ -2,13 +2,14 @@ import Link from "next/link";
 import CartButton from "../Icons/CartButton";
 import Whishlist from "../Icons/Whishlist";
 import { Button } from "../ui/button";
+
 interface ProductType {
   id: string;
   offer?: number | null;
   image: string;
   category: string;
   name: string;
-  price: string;
+  price: number;
   link: string;
   isInFavorites?: boolean;
 }
@@ -26,7 +27,7 @@ const ProductCard: React.FC<ProductType> = ({
     <>
       <div className="flex flex-col gap-[24px]">
         <div
-          className="rounded-[32px] h-[430px] min-w-[430px] px-[32px] py-[20px] flex flex-col justify-between group"
+          className="rounded-[32px] h-[430px]  px-[32px] py-[20px] flex flex-col justify-between group"
           style={{ background: `url(${image})`, backgroundSize: "cover" }}
         >
           <div className="flex justify-between items-center">
@@ -45,10 +46,12 @@ const ProductCard: React.FC<ProductType> = ({
               </button>
             )}
           </div>
-          <Button className="w-full transition-all lg:opacity-0 group-hover:opacity-[1]">
-            اشتري الان
-            <CartButton />
-          </Button>
+          <Link className="w-full" href={`/product/${id}`}>
+            <Button className="w-full transition-all lg:opacity-0 group-hover:opacity-[1]">
+              اشتري الان
+              <CartButton />
+            </Button>
+          </Link>
         </div>
         <div className="flex items-center justify-between gap-[16px] px-[12px]">
           <div className="flex flex-col gap-[12px]">

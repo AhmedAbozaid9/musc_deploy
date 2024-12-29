@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SigninFormTypes, SigninSchema } from "@/schemas/SigninSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff } from "lucide-react";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -12,6 +13,7 @@ interface SigninFormProps {
 }
 
 const SigninForm = ({ handleSignin }: SigninFormProps) => {
+  const [showPassword, setShowPassword] = React.useState(false);
   const {
     register,
     handleSubmit,
@@ -35,7 +37,20 @@ const SigninForm = ({ handleSignin }: SigninFormProps) => {
 
       <div>
         <Label>كلمة السر </Label>
-        <Input {...register("password")} type="password" className="mt-2" />
+        <div className="relative">
+          <Input
+            {...register("password")}
+            type={showPassword ? "text" : "password"}
+            className="mt-2"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute top-3 left-2"
+          >
+            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+          </button>
+        </div>
         {errors.password && (
           <p className="text-sm mt-2 text-red-400">{errors.password.message}</p>
         )}

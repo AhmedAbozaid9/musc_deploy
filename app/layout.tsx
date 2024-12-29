@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { Alexandria } from "next/font/google";
-import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import Providers from "@/lib/providers";
+import type { Metadata } from "next";
+import { Alexandria } from "next/font/google";
 import { Toaster } from "react-hot-toast";
+import "./globals.css";
 const alexandria = Alexandria({ subsets: ["arabic"] });
 export const metadata: Metadata = {
   title: {
@@ -21,10 +22,12 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body className={`${alexandria.className} antialiased`}>
-        <Header />
-        {children}
-        <Footer />
-        <Toaster />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

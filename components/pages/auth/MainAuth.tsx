@@ -2,12 +2,12 @@ import { signIn } from "@/apiRequests/auth/signIn";
 import { signUp } from "@/apiRequests/auth/signUp";
 import SignInForm from "@/components/pages/auth/SignInForm";
 import SignupForm from "@/components/pages/auth/SignupForm";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SigninFormTypes } from "@/schemas/SigninSchema";
 import { SignupFormTypes } from "@/schemas/SignupSchema";
 import { useAuthStore } from "@/store/useAuthStore";
 import React from "react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import toast from "react-hot-toast";
 
 interface MainAuthProps {
@@ -20,8 +20,7 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
   const handleSignup = async (data: SignupFormTypes) => {
     try {
       const response = await signUp({ ...data, age: parseInt(data.age) });
-      toast.success("تم تسحيل الدخول");
-      setUser(response);
+      toast.success("تفقد بريدك الالكتروني  ");
       setShowSignup(false);
     } catch (err) {
       toast.error("حدث خطأ");
