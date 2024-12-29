@@ -26,7 +26,7 @@ const ProductCard: React.FC<ProductType> = ({
     <>
       <div className="flex flex-col gap-[24px]">
         <div
-          className="rounded-[32px] h-[430px] min-w-[430px] px-[32px] py-[20px] flex flex-col justify-between group"
+          className="rounded-[32px] h-[430px]  px-[32px] py-[20px] flex flex-col justify-between group"
           style={{ background: `url(${image})`, backgroundSize: "cover" }}
         >
           <div className="flex justify-between items-center">
