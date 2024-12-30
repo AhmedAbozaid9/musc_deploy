@@ -22,9 +22,7 @@ const AccountLayout = ({
   handleLogout,
 }: LayoutProps) => {
   const [isClient, setIsClient] = useState(false);
-  const router = useRouter();
   const user = useAuthStore((state) => state.user);
-  const setUser = useAuthStore((state) => state.setUser);
 
   useEffect(() => {
     setIsClient(true);
