@@ -5,7 +5,15 @@ import CartButtonWhite from "@/components/Icons/CartButtonWhite";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function ProductActions() {
+interface ProductActionsProps {
+  price: number;
+  maxQuantity: number;
+}
+
+export default function ProductActions({
+  price,
+  maxQuantity,
+}: ProductActionsProps) {
   const [count, setCount] = useState(1);
   const onCountChange = (newCount: number) => {
     setCount(newCount);
@@ -14,8 +22,12 @@ export default function ProductActions() {
     <>
       <div className="flex flex-col gap-[16px]">
         <div className="flex justify-between lg:items-center items-start gap-[12px] flex-col lg:flex-row">
-          <CountableItem count={count} onCountChange={onCountChange} />
-          <h4 className="text-[24px]">3000 جم</h4>
+          <CountableItem
+            count={count}
+            onCountChange={onCountChange}
+            maxQuantity={maxQuantity}
+          />
+          <h4 className="text-[24px]">{price} جم</h4>
         </div>
         <div className="flex items-center gap-[16px]">
           <Button className="w-full bg-primary text-secondary">
