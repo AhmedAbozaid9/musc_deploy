@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
 export default function BannerHero() {
-  const { data: banners } = useQuery(["banners"], getBanners);
+  const { data: banners, isLoading } = useQuery(["banners"], getBanners);
   console.log(banners && banners[0].imageUrl);
 
   // Carousel settings
@@ -26,9 +26,14 @@ export default function BannerHero() {
 
   return (
     <div className="container text-secondary pb-[60px]">
-      {banners ? (
+      {isLoading ? (
+        <div className="space-y-4">
+          {/* Skeleton loader for banner */}
+          <div className="lg:h-[80vh] h-[60vh] rounded-[32px] bg-gray-300 animate-pulse"></div>
+        </div>
+      ) : (
         <Slider {...settings}>
-          {banners.map((banner: any) => (
+          {banners?.map((banner: any) => (
             <div
               key={banner._id}
               className="lg:h-[80vh] h-[60vh] rounded-[32px] flex flex-col justify-between lg:p-[40px] px-[12px] py-[32px] relative"
@@ -56,7 +61,7 @@ export default function BannerHero() {
                 </h2>
               </div>
 
-              <div className="absolute  bottom-8 w-full flex flex-col items-center lg:flex-row justify-center gap-[16px]">
+              <div className="absolute bottom-8 w-full flex flex-col items-center lg:flex-row justify-center gap-[16px]">
                 <Button asChild>
                   <Link href={routes?.Shop}>
                     <BlackArrow />
@@ -70,8 +75,6 @@ export default function BannerHero() {
             </div>
           ))}
         </Slider>
-      ) : (
-        <p>Loading banners...</p>
       )}
     </div>
   );
