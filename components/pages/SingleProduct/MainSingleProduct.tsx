@@ -21,7 +21,11 @@ const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
     ["relatedProducts", productId],
     () => getRelatedProducts(productId)
   );
-  console.log(product);
+
+  const handleAddToCart = () => {
+    console.log("Added to cart");
+  };
+
   return (
     <>
       {!relatedProducts || !product ? (

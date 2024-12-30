@@ -9,14 +9,23 @@ import Favorites from "@/components/pages/account/Favorites";
 import Orders from "@/components/pages/account/Orders";
 import Settings from "@/components/pages/account/Settings";
 import { sidebarContent } from "@/constants/sidebarContent";
+import { useAuthStore } from "@/store/useAuthStore";
 import React, { useState } from "react";
 
 const MainAccount = () => {
+  const setUser = useAuthStore((state) => state.setUser);
   const [slug, setSlug] = useState("account");
   const title = sidebarContent.filter((item) => item.slug === slug)[0].title;
+
+  const handleLogout = () => {
+    localStorage.removeItem("musc-token");
+    setUser(null);
+    window.location.href = "/";
+  };
+
   return (
     <div>
-      <AccountLayout slug={slug} setSlug={setSlug}>
+      <AccountLayout slug={slug} setSlug={setSlug} handleLogout={handleLogout}>
         <h2 className="font-semibold text-lg sm:text-2xl mb-3">{title}</h2>
         <hr />
         <div className="mt-6">
