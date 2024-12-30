@@ -1,4 +1,9 @@
+"use client";
+import { addWishlist } from "@/apiRequests/wishlist/addWishlist";
+import { removeFromWishlist } from "@/apiRequests/wishlist/removeFromWishlist";
+import { Trash } from "lucide-react";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import CartButton from "../Icons/CartButton";
 import Whishlist from "../Icons/Whishlist";
 import { Button } from "../ui/button";
@@ -12,6 +17,7 @@ interface ProductType {
   price: number;
   link: string;
   isInFavorites?: boolean;
+  refetch?: () => void;
 }
 const ProductCard: React.FC<ProductType> = ({
   id,
@@ -22,7 +28,26 @@ const ProductCard: React.FC<ProductType> = ({
   price,
   link,
   isInFavorites,
+  refetch,
 }) => {
+  const handleAddToWishlist = async () => {
+    try {
+      const res = await addWishlist(id);
+      toast.success("تمت الاضافة الي المفضلة");
+    } catch (error) {
+      toast.error("حدث خطأ");
+      console.log(error);
+    }
+  };
+  const handleDeleteFromWishlist = async () => {
+    try {
+      const res = await removeFromWishlist(id);
+      toast.success("تمت الازالة من المفضلة");
+      refetch && refetch();
+    } catch (error: any) {
+      toast.error("حدث خطأ");
+    }
+  };
   return (
     <>
       <div className="flex flex-col gap-[24px]">
@@ -40,9 +65,19 @@ const ProductCard: React.FC<ProductType> = ({
                 </div>
               )}
             </div>
-            {!isInFavorites && (
-              <button className="bg-[#ffffff4c] rounded-full p-2">
+            {!isInFavorites ? (
+              <button
+                onClick={handleAddToWishlist}
+                className="bg-[#b4b3b34c]  rounded-full p-2"
+              >
                 <Whishlist />
+              </button>
+            ) : (
+              <button
+                onClick={handleDeleteFromWishlist}
+                className="bg-[#b4b3b34c]  rounded-full p-2"
+              >
+                <Trash color="white" />
               </button>
             )}
           </div>

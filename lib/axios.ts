@@ -2,11 +2,11 @@ import Axios from "axios";
 import Cookies from "js-cookie";
 
 function authRequestInterceptor(config: {
-  headers: { authorization: string; Accept: string };
+  headers: { token: string; Accept: string };
 }) {
   const token = Cookies.get("musc-token");
   if (token) {
-    config.headers.authorization = `Bearer ${token}`;
+    config.headers.token = token;
   }
   config.headers.Accept = "application/json";
   return config;
@@ -17,6 +17,7 @@ export const axios = Axios.create({
 });
 
 axios.interceptors.request.use(authRequestInterceptor as any);
+
 axios.interceptors.response.use(
   (response) => {
     return response;
@@ -27,5 +28,5 @@ axios.interceptors.response.use(
       window.location.href = "/login";
     }
     return Promise.reject(error);
-  },
+  }
 );

@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SigninFormTypes } from "@/schemas/SigninSchema";
 import { SignupFormTypes } from "@/schemas/SignupSchema";
 import { useAuthStore } from "@/store/useAuthStore";
+import Cookies from "js-cookie";
 import React from "react";
 import toast from "react-hot-toast";
 
@@ -32,6 +33,7 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
       const response = await signIn(data);
       toast.success("تم تسحيل الدخول");
       setUser(response);
+      Cookies.set("musc-token", response.token);
       setShowSignup(false);
     } catch (err) {
       toast.error("حدث خطأ");
