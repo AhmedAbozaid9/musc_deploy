@@ -1,14 +1,14 @@
 "use client";
-import { SingleProductTypes } from "@/apiRequests/products/getSingleProduct";
 import FireIcon from "@/components/Icons/FireIcon";
 import HeartFavorite from "@/components/Icons/HeartFavorite";
 import ShareIcon from "@/components/Icons/ShareIcon";
 import StockIcon from "@/components/Icons/StockIcon";
+import { ProductType } from "@/types/ProductType";
 import toast from "react-hot-toast";
 import ProductActions from "./ProductActions";
 
 interface ProductDetailsProps {
-  product: SingleProductTypes;
+  product: ProductType;
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
