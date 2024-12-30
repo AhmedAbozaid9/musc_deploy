@@ -17,6 +17,7 @@ interface ProductType {
   price: number;
   link: string;
   isInFavorites?: boolean;
+  refetch?: () => void;
 }
 const ProductCard: React.FC<ProductType> = ({
   id,
@@ -27,6 +28,7 @@ const ProductCard: React.FC<ProductType> = ({
   price,
   link,
   isInFavorites,
+  refetch,
 }) => {
   const handleAddToWishlist = async () => {
     try {
@@ -41,9 +43,9 @@ const ProductCard: React.FC<ProductType> = ({
     try {
       const res = await removeFromWishlist(id);
       toast.success("تمت الازالة من المفضلة");
-    } catch (error) {
+      refetch && refetch();
+    } catch (error: any) {
       toast.error("حدث خطأ");
-      console.log(error);
     }
   };
   return (

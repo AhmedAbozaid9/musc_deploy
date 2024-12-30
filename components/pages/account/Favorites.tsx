@@ -2,17 +2,16 @@
 import { getWishlist } from "@/apiRequests/wishlist/getWishlist";
 import Loading from "@/components/general/Loading";
 import ProductCard from "@/components/general/ProductCard";
-import routes from "@/lib/routes";
 import { ProductType } from "@/types/ProductType";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
 const Favorites = () => {
-  const { data: favorites = [], isLoading } = useQuery<ProductType[]>(
-    ["favorites"],
-    getWishlist
-  );
-  console.log(favorites);
+  const {
+    data: favorites = [],
+    isLoading,
+    refetch,
+  } = useQuery<ProductType[]>(["favorites"], getWishlist);
   return (
     <>
       {!isLoading ? (
@@ -30,6 +29,7 @@ const Favorites = () => {
                     price={product.price}
                     link={`/product/${product.id}`}
                     isInFavorites={true}
+                    refetch={refetch}
                   />
                 ))}
               </div>
