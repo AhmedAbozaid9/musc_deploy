@@ -1,5 +1,7 @@
 "use client";
 import { addWishlist } from "@/apiRequests/wishlist/addWishlist";
+import { removeFromWishlist } from "@/apiRequests/wishlist/removeFromWishlist";
+import { Trash } from "lucide-react";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import CartButton from "../Icons/CartButton";
@@ -35,6 +37,15 @@ const ProductCard: React.FC<ProductType> = ({
       console.log(error);
     }
   };
+  const handleDeleteFromWishlist = async () => {
+    try {
+      const res = await removeFromWishlist(id);
+      toast.success("تمت الازالة من المفضلة");
+    } catch (error) {
+      toast.error("حدث خطأ");
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="flex flex-col gap-[24px]">
@@ -52,12 +63,19 @@ const ProductCard: React.FC<ProductType> = ({
                 </div>
               )}
             </div>
-            {!isInFavorites && (
+            {!isInFavorites ? (
               <button
                 onClick={handleAddToWishlist}
                 className="bg-[#b4b3b34c]  rounded-full p-2"
               >
                 <Whishlist />
+              </button>
+            ) : (
+              <button
+                onClick={handleDeleteFromWishlist}
+                className="bg-[#b4b3b34c]  rounded-full p-2"
+              >
+                <Trash color="white" />
               </button>
             )}
           </div>
