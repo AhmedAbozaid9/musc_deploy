@@ -1,4 +1,5 @@
 "use client";
+import { getRelatedProducts } from "@/apiRequests/products/getRelatedProducts";
 import { getSingleProduct } from "@/apiRequests/products/getSingleProduct";
 import Brudcambs from "@/components/general/Brudcambs";
 import Loading from "@/components/general/Loading";
@@ -13,13 +14,17 @@ interface MainSingleProductProps {
 }
 
 const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
-  const { data: product, isLoading } = useQuery(["product", productId], () =>
+  const { data: product } = useQuery(["product", productId], () =>
     getSingleProduct(productId)
+  );
+  const { data: relatedProducts } = useQuery(
+    ["relatedProducts", productId],
+    () => getRelatedProducts(productId)
   );
   console.log(product);
   return (
     <>
-      {isLoading || !product ? (
+      {!relatedProducts || !product ? (
         <Loading />
       ) : (
         <div className="container">
@@ -28,7 +33,7 @@ const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
             <GalleryImage images={product.images} />
             <ProductDetails product={product} />
           </div>
-          <RelatedProducts />
+          {relatedProducts.length > 0 && <RelatedProducts />}
         </div>
       )}
     </>
