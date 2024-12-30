@@ -1,4 +1,7 @@
+"use client";
+import { addWishlist } from "@/apiRequests/wishlist/addWishlist";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import CartButton from "../Icons/CartButton";
 import Whishlist from "../Icons/Whishlist";
 import { Button } from "../ui/button";
@@ -23,6 +26,15 @@ const ProductCard: React.FC<ProductType> = ({
   link,
   isInFavorites,
 }) => {
+  const handleAddToWishlist = async () => {
+    try {
+      const res = await addWishlist(id);
+      toast.success("تمت الاضافة الي المفضلة");
+    } catch (error) {
+      toast.error("حدث خطأ");
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="flex flex-col gap-[24px]">
@@ -41,7 +53,10 @@ const ProductCard: React.FC<ProductType> = ({
               )}
             </div>
             {!isInFavorites && (
-              <button className="bg-[#ffffff4c] rounded-full p-2">
+              <button
+                onClick={handleAddToWishlist}
+                className="bg-[#b4b3b34c]  rounded-full p-2"
+              >
                 <Whishlist />
               </button>
             )}
