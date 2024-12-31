@@ -9,9 +9,15 @@ import ProductActions from "./ProductActions";
 
 interface ProductDetailsProps {
   product: ProductType;
+  handleAddToCart: () => Promise<void>;
+  handleAddToWishlist: () => Promise<void>;
 }
 
-export default function ProductDetails({ product }: ProductDetailsProps) {
+export default function ProductDetails({
+  product,
+  handleAddToCart,
+  handleAddToWishlist,
+}: ProductDetailsProps) {
   const handleCopy = () => {
     const urlToCopy = window.location.href;
     navigator.clipboard
@@ -38,7 +44,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             >
               <ShareIcon />
             </button>
-            <button>
+            <button onClick={handleAddToWishlist}>
               <HeartFavorite />
             </button>
           </div>
@@ -64,6 +70,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <ProductActions
           maxQuantity={product.quantity}
           price={product.priceAfterDiscount}
+          handleAddToCart={handleAddToCart}
         />
       </div>
     </>

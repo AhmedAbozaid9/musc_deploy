@@ -8,11 +8,13 @@ import { useState } from "react";
 interface ProductActionsProps {
   price: number;
   maxQuantity: number;
+  handleAddToCart: () => Promise<void>;
 }
 
 export default function ProductActions({
   price,
   maxQuantity,
+  handleAddToCart,
 }: ProductActionsProps) {
   const [count, setCount] = useState(1);
   const onCountChange = (newCount: number) => {
@@ -30,11 +32,14 @@ export default function ProductActions({
           <h4 className="text-[24px]">{price} جم</h4>
         </div>
         <div className="flex items-center gap-[16px]">
-          <Button className="w-full bg-primary text-secondary">
+          <Button
+            onClick={handleAddToCart}
+            className="w-full bg-primary text-secondary"
+          >
             اشتري الان
             <CartButtonWhite />
           </Button>
-          <Button className="w-full">
+          <Button onClick={handleAddToCart} className="w-full">
             اضف للسلة
             <CartButton />
           </Button>
