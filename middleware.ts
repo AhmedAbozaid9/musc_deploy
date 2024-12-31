@@ -6,6 +6,9 @@ export function middleware(request: NextRequest) {
   if (!currentUser && request.nextUrl.pathname.startsWith("/account")) {
     return Response.redirect(new URL("/", request.url));
   }
+  if (!currentUser && request.nextUrl.pathname.startsWith("/cart")) {
+    return Response.redirect(new URL("/", request.url));
+  }
 }
 
 export const config = {
