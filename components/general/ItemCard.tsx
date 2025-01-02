@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 import DeleteItemCart from "../Icons/DeleteItemCart";
 
 export interface ItemCartType {
@@ -8,8 +9,8 @@ export interface ItemCartType {
   price: number;
   category: string;
   count: number;
-  onCountChange: (newCount: number) => void;
   handleDeleteItem: (id: string) => Promise<void>;
+  handleUpdateItem: (id: string, quantity: number) => Promise<void>;
 }
 const ItemCard: React.FC<ItemCartType> = ({
   id,
@@ -18,18 +19,32 @@ const ItemCard: React.FC<ItemCartType> = ({
   price,
   category,
   count,
-  onCountChange,
+  handleUpdateItem,
   handleDeleteItem,
 }) => {
+  const [localQuantity, setLocalQuantity] = useState<number>(count);
   const onPlus = () => {
-    if (count < 10) {
-      onCountChange(count + 1);
+    if (localQuantity < 10) {
+      setLocalQuantity((prev) => prev + 1);
+      try {
+        handleUpdateItem(id, localQuantity + 1);
+      } catch (error) {
+        console.log("error happened");
+        setLocalQuantity((prev) => prev - 1);
+        console.log(error);
+      }
     }
   };
 
   const onMinus = () => {
-    if (count > 1) {
-      onCountChange(count - 1);
+    if (localQuantity > 1) {
+      setLocalQuantity((prev) => prev + -1);
+      try {
+        handleUpdateItem(id, localQuantity - 1);
+      } catch (error) {
+        setLocalQuantity((prev) => prev + 1);
+        console.log(error);
+      }
     }
   };
   return (
@@ -65,7 +80,7 @@ const ItemCard: React.FC<ItemCartType> = ({
                     -
                   </button>
                   <h4 className="text-[18px] text-[#1D1B1B] font-[600]">
-                    {count}
+                    {localQuantity}
                   </h4>
                   <button
                     onClick={onPlus}

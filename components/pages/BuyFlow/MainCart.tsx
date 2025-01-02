@@ -2,6 +2,7 @@
 
 import { deleteCartItem } from "@/apiRequests/cart/deleteCartItem";
 import { getCart } from "@/apiRequests/cart/getCart";
+import { updateCartItem } from "@/apiRequests/cart/updateCartItem";
 import Brudcambs from "@/components/general/Brudcambs";
 import Loading from "@/components/general/Loading";
 import ConfirmPurchase from "@/components/pages/BuyFlow/ConfirmPurchase";
@@ -30,6 +31,18 @@ export default function MainCart() {
     const newUrl = `?${newQueryString}`;
 
     router.push(newUrl);
+  };
+
+  const handleUpdateItem = async (id: string, quantity: number) => {
+    try {
+      const response = await updateCartItem(id, quantity);
+      if (response.status === "success") {
+        toast.success("تم تحديث الكمية بنجاح");
+        refetch();
+      }
+    } catch (err) {
+      toast.error("حدث خطأ ما");
+    }
   };
 
   const handleDeleteItem = async (id: string) => {
@@ -69,6 +82,7 @@ export default function MainCart() {
                   {step === 1 && (
                     <CartItems
                       cartItems={cart.cartItems}
+                      handleUpdateItem={handleUpdateItem}
                       handleDeleteItem={handleDeleteItem}
                     />
                   )}

@@ -6,9 +6,11 @@ import { useState } from "react";
 interface CartItemsProps {
   cartItems: CartItemTypes[];
   handleDeleteItem: (id: string) => Promise<void>;
+  handleUpdateItem: (id: string, quantity: number) => Promise<void>;
 }
 export default function CartItems({
   cartItems,
+  handleUpdateItem,
   handleDeleteItem,
 }: CartItemsProps) {
   return (
@@ -25,8 +27,8 @@ export default function CartItems({
               price={item.price}
               category={"needed"}
               count={item.quantity}
-              onCountChange={(newCount) => {}}
               handleDeleteItem={handleDeleteItem}
+              handleUpdateItem={handleUpdateItem}
             />
           ))}
         </div>
