@@ -5,8 +5,12 @@ import { useState } from "react";
 
 interface CartItemsProps {
   cartItems: CartItemTypes[];
+  handleDeleteItem: (id: string) => Promise<void>;
 }
-export default function CartItems({ cartItems }: CartItemsProps) {
+export default function CartItems({
+  cartItems,
+  handleDeleteItem,
+}: CartItemsProps) {
   return (
     <>
       <div>
@@ -22,6 +26,7 @@ export default function CartItems({ cartItems }: CartItemsProps) {
               category={"needed"}
               count={item.quantity}
               onCountChange={(newCount) => {}}
+              handleDeleteItem={handleDeleteItem}
             />
           ))}
         </div>

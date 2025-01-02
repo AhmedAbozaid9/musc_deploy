@@ -9,6 +9,7 @@ export interface ItemCartType {
   category: string;
   count: number;
   onCountChange: (newCount: number) => void;
+  handleDeleteItem: (id: string) => Promise<void>;
 }
 const ItemCard: React.FC<ItemCartType> = ({
   id,
@@ -18,6 +19,7 @@ const ItemCard: React.FC<ItemCartType> = ({
   category,
   count,
   onCountChange,
+  handleDeleteItem,
 }) => {
   const onPlus = () => {
     if (count < 10) {
@@ -73,7 +75,10 @@ const ItemCard: React.FC<ItemCartType> = ({
                   </button>
                 </div>
               </div>
-              <button className="flex gap-[8px] mx-auto mt-[18px] text-[#F80022] text-[16px]">
+              <button
+                onClick={() => handleDeleteItem(id)}
+                className="flex gap-[8px] mx-auto mt-[18px] text-[#F80022] text-[16px]"
+              >
                 <DeleteItemCart />
                 ازاله
               </button>

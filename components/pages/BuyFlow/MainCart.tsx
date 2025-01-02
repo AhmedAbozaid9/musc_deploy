@@ -1,5 +1,6 @@
 "use client";
 
+import { deleteCartItem } from "@/apiRequests/cart/deleteCartItem";
 import { getCart } from "@/apiRequests/cart/getCart";
 import Brudcambs from "@/components/general/Brudcambs";
 import Loading from "@/components/general/Loading";
@@ -8,6 +9,7 @@ import ConfirmPurchaseDetails from "@/components/pages/BuyFlow/ConfirmPurchaseDe
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 import AddressAndDelivery from "./AddressAndDelivery";
 import CartHeader from "./CartHeader";
 import CartItems from "./CartItems";
@@ -19,7 +21,7 @@ export default function MainCart() {
   const searchParams = useSearchParams();
   const step = parseInt(searchParams.get("step") || "1", 10);
 
-  const { data: cart, isLoading } = useQuery(["cart"], getCart);
+  const { data: cart, isLoading, refetch } = useQuery(["cart"], getCart);
   const handleStepChange = (step: string) => {
     const params = new URLSearchParams(searchParams?.toString() || "");
     params.set("step", step);
@@ -28,6 +30,18 @@ export default function MainCart() {
     const newUrl = `?${newQueryString}`;
 
     router.push(newUrl);
+  };
+
+  const handleDeleteItem = async (id: string) => {
+    try {
+      const response = await deleteCartItem(id);
+      if (response.status === "success") {
+        toast.success("تم حذف المنتج بنجاح");
+        refetch();
+      }
+    } catch (err) {
+      toast.error("حدث خطأ ما");
+    }
   };
 
   useEffect(() => {
@@ -52,7 +66,12 @@ export default function MainCart() {
               <CartHeader />
               <div className="mt-[56px] flex items-start justify-between gap-[38px] lg:flex-row flex-col">
                 <div className="lg:w-[56%] w-full">
-                  {step === 1 && <CartItems cartItems={cart.cartItems} />}
+                  {step === 1 && (
+                    <CartItems
+                      cartItems={cart.cartItems}
+                      handleDeleteItem={handleDeleteItem}
+                    />
+                  )}
                   {step === 2 && <AddressAndDelivery />}
                 </div>
                 <div className="lg:w-[40%] w-full">
@@ -72,7 +91,7 @@ export default function MainCart() {
               )}
             </>
           ) : (
-            <p>لا توجد منتجات</p>
+            <p className="py-12 ">لا توجد منتجات</p>
           )}
         </>
       )}
