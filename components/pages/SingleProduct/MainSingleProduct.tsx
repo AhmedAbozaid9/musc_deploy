@@ -1,4 +1,5 @@
 "use client";
+import { addToCart } from "@/apiRequests/cart/addToCart";
 import { getRelatedProducts } from "@/apiRequests/products/getRelatedProducts";
 import { getSingleProduct } from "@/apiRequests/products/getSingleProduct";
 import { addWishlist } from "@/apiRequests/wishlist/addWishlist";
@@ -16,6 +17,8 @@ interface MainSingleProductProps {
 }
 
 const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
+  const [quantity, setQuantity] = React.useState(1);
+  const [color, setColor] = React.useState("");
   const { data: product } = useQuery(["product", productId], () =>
     getSingleProduct(productId)
   );
@@ -33,7 +36,13 @@ const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
     }
   };
   const handleAddToCart = async () => {
-    console.log("Added to cart");
+    try {
+      const res = await addToCart(productId, "Red", 1);
+      toast.success("تمت الاضافة الي السلة");
+    } catch (error) {
+      toast.error("حدث خطأ");
+      console.log(error);
+    }
   };
 
   return (
@@ -49,6 +58,10 @@ const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
               handleAddToCart={handleAddToCart}
               handleAddToWishlist={handleAddToWishlist}
               product={product}
+              quantity={quantity}
+              setQuantity={setQuantity}
+              color={color}
+              setColor={setColor}
             />
           </div>
           {relatedProducts.length > 0 && <RelatedProducts />}

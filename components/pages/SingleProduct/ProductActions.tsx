@@ -9,23 +9,26 @@ interface ProductActionsProps {
   price: number;
   maxQuantity: number;
   handleAddToCart: () => Promise<void>;
+  quantity: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function ProductActions({
   price,
   maxQuantity,
   handleAddToCart,
+  quantity,
+  setQuantity,
 }: ProductActionsProps) {
-  const [count, setCount] = useState(1);
   const onCountChange = (newCount: number) => {
-    setCount(newCount);
+    setQuantity(newCount);
   };
   return (
     <>
       <div className="flex flex-col gap-[16px]">
         <div className="flex justify-between lg:items-center items-start gap-[12px] flex-col lg:flex-row">
           <CountableItem
-            count={count}
+            count={quantity}
             onCountChange={onCountChange}
             maxQuantity={maxQuantity}
           />
