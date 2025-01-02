@@ -1,21 +1,25 @@
 "use client";
 
+import { getCart } from "@/apiRequests/cart/getCart";
 import Brudcambs from "@/components/general/Brudcambs";
+import Loading from "@/components/general/Loading";
 import ConfirmPurchase from "@/components/pages/BuyFlow/ConfirmPurchase";
 import ConfirmPurchaseDetails from "@/components/pages/BuyFlow/ConfirmPurchaseDetails";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import CartHeader from "./CartHeader";
 import AddressAndDelivery from "./AddressAndDelivery";
-import OrderSummary from "./OrderSummary";
+import CartHeader from "./CartHeader";
 import CartItems from "./CartItems";
 import CartSummary from "./CartSummary";
+import OrderSummary from "./OrderSummary";
 
 export default function MainCart() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const step = parseInt(searchParams.get("step") || "1", 10);
 
+  const { data: cart, isLoading } = useQuery(["cart"], getCart);
   const handleStepChange = (step: string) => {
     const params = new URLSearchParams(searchParams?.toString() || "");
     params.set("step", step);
@@ -37,23 +41,40 @@ export default function MainCart() {
 
   return (
     <div className="container">
-      <Brudcambs name="سلة التسوق" />
-      <CartHeader />
-      <div className="mt-[56px] flex items-start justify-between gap-[38px] lg:flex-row flex-col">
-        <div className="lg:w-[56%] w-full">
-          {step === 1 && <CartItems />}
-          {step === 2 && <AddressAndDelivery />}
-        </div>
-        <div className="lg:w-[40%] w-full">
-          {step === 1 && <CartSummary handleStepChange={handleStepChange} />}
-          {step === 2 && <OrderSummary handleStepChange={handleStepChange} />}
-        </div>
-      </div>
-      {step === 3 && (
-        <div>
-          <ConfirmPurchase />
-          <ConfirmPurchaseDetails />
-        </div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          {cart && cart.cartItems.length > 0 ? (
+            <>
+              {" "}
+              <Brudcambs name="سلة التسوق" />
+              <CartHeader />
+              <div className="mt-[56px] flex items-start justify-between gap-[38px] lg:flex-row flex-col">
+                <div className="lg:w-[56%] w-full">
+                  {step === 1 && <CartItems cartItems={cart.cartItems} />}
+                  {step === 2 && <AddressAndDelivery />}
+                </div>
+                <div className="lg:w-[40%] w-full">
+                  {step === 1 && (
+                    <CartSummary handleStepChange={handleStepChange} />
+                  )}
+                  {step === 2 && (
+                    <OrderSummary handleStepChange={handleStepChange} />
+                  )}
+                </div>
+              </div>
+              {step === 3 && (
+                <div>
+                  <ConfirmPurchase />
+                  <ConfirmPurchaseDetails />
+                </div>
+              )}
+            </>
+          ) : (
+            <p>لا توجد منتجات</p>
+          )}
+        </>
       )}
     </div>
   );

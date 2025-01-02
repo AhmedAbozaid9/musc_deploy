@@ -5,7 +5,7 @@ export interface ItemCartType {
   id: string;
   image: string;
   title: string;
-  price: string;
+  price: number;
   category: string;
   count: number;
   onCountChange: (newCount: number) => void;

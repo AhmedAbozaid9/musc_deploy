@@ -37,7 +37,7 @@ const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
   };
   const handleAddToCart = async () => {
     try {
-      const res = await addToCart(productId, "Red", 1);
+      const res = await addToCart(productId, color, 1);
       toast.success("تمت الاضافة الي السلة");
     } catch (error) {
       toast.error("حدث خطأ");
