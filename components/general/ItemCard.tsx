@@ -23,11 +23,11 @@ const ItemCard: React.FC<ItemCartType> = ({
   handleDeleteItem,
 }) => {
   const [localQuantity, setLocalQuantity] = useState<number>(count);
-  const onPlus = () => {
+  const onPlus = async () => {
     if (localQuantity < 10) {
       setLocalQuantity((prev) => prev + 1);
       try {
-        handleUpdateItem(id, localQuantity + 1);
+        await handleUpdateItem(id, localQuantity + 1);
       } catch (error) {
         console.log("error happened");
         setLocalQuantity((prev) => prev - 1);
@@ -36,11 +36,11 @@ const ItemCard: React.FC<ItemCartType> = ({
     }
   };
 
-  const onMinus = () => {
+  const onMinus = async () => {
     if (localQuantity > 1) {
       setLocalQuantity((prev) => prev + -1);
       try {
-        handleUpdateItem(id, localQuantity - 1);
+        await handleUpdateItem(id, localQuantity - 1);
       } catch (error) {
         setLocalQuantity((prev) => prev + 1);
         console.log(error);
