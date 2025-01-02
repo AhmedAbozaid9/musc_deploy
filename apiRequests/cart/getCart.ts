@@ -8,7 +8,7 @@ export type CartItemTypes = {
   quantity: number;
 };
 
-type CartTypes = {
+export type CartTypes = {
   appliedCoupon: string | null;
   cartItems: CartItemTypes[];
   discount: number;

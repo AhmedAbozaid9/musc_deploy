@@ -90,7 +90,10 @@ export default function MainCart() {
                 </div>
                 <div className="lg:w-[40%] w-full">
                   {step === 1 && (
-                    <CartSummary handleStepChange={handleStepChange} />
+                    <CartSummary
+                      cart={cart}
+                      handleStepChange={handleStepChange}
+                    />
                   )}
                   {step === 2 && (
                     <OrderSummary handleStepChange={handleStepChange} />

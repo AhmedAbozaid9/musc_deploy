@@ -1,3 +1,4 @@
+import { CartTypes } from "@/apiRequests/cart/getCart";
 import CouponCode from "@/components/general/CouponCode";
 import WhiteArrow from "@/components/Icons/WhiteArrow";
 import { Button } from "@/components/ui/button";
@@ -5,10 +6,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
 interface CartSummaryProps {
+  cart: CartTypes;
   handleStepChange: (step: string) => void;
 }
 
-export default function CartSummary({ handleStepChange }: CartSummaryProps) {
+export default function CartSummary({
+  cart,
+  handleStepChange,
+}: CartSummaryProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -24,11 +29,15 @@ export default function CartSummary({ handleStepChange }: CartSummaryProps) {
             <p className="text-[#787878] text-[20px] font-[300]">
               المجموع الفرعي
             </p>
-            <p className="text-[#1E1E1E] text-[24px] font-[500]">6000 جم</p>
+            <p className="text-[#1E1E1E] text-[24px] font-[500]">
+              {cart.totalPrice} جم
+            </p>
           </div>
           <div className="flex justify-between items-center">
             <p className="text-[#787878] text-[20px] font-[300]">رسوم الشحن</p>
-            <p className="text-[#1E1E1E] text-[24px] font-[500]">200 جم</p>
+            <p className="text-[#1E1E1E] text-[24px] font-[500]">
+              {cart.shippingPrice} جم
+            </p>
           </div>
         </div>
         <Button
