@@ -1,5 +1,6 @@
 "use client";
 import { addAddress } from "@/apiRequests/address/addAddress";
+import { updateAddress } from "@/apiRequests/address/updateAddress";
 import { AddressFormTypes, AddressSchema } from "@/schemas/AddressSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
@@ -14,13 +15,21 @@ import { Label } from "../ui/label";
 interface AddAddressFormProps {
   showForm: boolean;
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
-  updatedAddressData?: any;
+  refetch: () => void;
+  id?: string;
+  fullName?: string;
+  phoneNumber?: string;
+  detailedAddress?: string;
 }
 
 const AddAddressForm = ({
   showForm,
   setShowForm,
-  updatedAddressData,
+  refetch,
+  fullName,
+  phoneNumber,
+  detailedAddress,
+  id,
 }: AddAddressFormProps) => {
   const {
     register,
@@ -32,23 +41,27 @@ const AddAddressForm = ({
 
   const handleAddAddress = async (data: AddressFormTypes) => {
     try {
-      const response = await addAddress(data);
+      await addAddress(data);
       setShowForm(false);
       toast.success("تمت الاضافة بنجاح");
+      refetch();
     } catch (error) {
       toast.error("حدث خطأ");
     }
   };
   const handleUpdateAddress = async (data: AddressFormTypes) => {
     try {
-      // Add address logic here
+      await updateAddress(data, id as string);
+      setShowForm(false);
+      toast.success("تم التعديل بنجاح");
+      refetch();
     } catch (error) {
       toast.error("حدث خطأ");
     }
   };
 
   const onSubmit = (data: AddressFormTypes) => {
-    if (updatedAddressData) {
+    if (fullName && phoneNumber && detailedAddress) {
       handleUpdateAddress(data);
     } else {
       handleAddAddress(data);
@@ -62,14 +75,19 @@ const AddAddressForm = ({
         dir="rtl"
       >
         <h2 className="text-xl sm:text-2xl font-semibold">
-          {updatedAddressData ? "تعديل العنوان" : "إضافة عنوان جديد"}
+          {fullName ? "تعديل العنوان" : "إضافة عنوان جديد"}
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/** Row 1: Full Name & Phone Number */}
           <div className="flex flex-wrap gap-4">
             <div className="flex-1">
               <Label htmlFor="fullName">الاسم الكامل</Label>
-              <Input className="mt-2" id="fullName" {...register("fullName")} />
+              <Input
+                defaultValue={fullName}
+                className="mt-2"
+                id="fullName"
+                {...register("fullName")}
+              />
               {errors.fullName && (
                 <p className="text-red-500 text-sm">
                   {errors.fullName.message}
@@ -79,6 +97,8 @@ const AddAddressForm = ({
             <div className="flex-1">
               <Label htmlFor="phoneNumber">رقم الهاتف</Label>
               <Input
+                defaultValue={phoneNumber}
+                type="numberp"
                 className="mt-2"
                 id="phoneNumber"
                 {...register("phoneNumber")}
@@ -96,6 +116,7 @@ const AddAddressForm = ({
             <div className="flex-1">
               <Label htmlFor="alternativePhoneNumber">رقم هاتف بديل</Label>
               <Input
+                type="number"
                 id="alternativePhoneNumber"
                 {...register("alternativePhoneNumber")}
               />
@@ -117,7 +138,7 @@ const AddAddressForm = ({
           {/** Row 3: Address Title & Detailed Address */}
           <div className="flex flex-wrap gap-4">
             <div className="flex-1">
-              <Label htmlFor="addressTitle">عنوان العنوان</Label>
+              <Label htmlFor="addressTitle">اسم العنوان</Label>
               <Input
                 className="mt-2"
                 id="addressTitle"
@@ -132,6 +153,7 @@ const AddAddressForm = ({
             <div className="flex-1">
               <Label htmlFor="detailedAddress">العنوان التفصيلي</Label>
               <Input
+                defaultValue={detailedAddress}
                 className="mt-2"
                 id="detailedAddress"
                 {...register("detailedAddress")}
@@ -149,6 +171,7 @@ const AddAddressForm = ({
             <div className="flex-1">
               <Label htmlFor="buildingNumber">رقم المبنى</Label>
               <Input
+                type="number"
                 className="mt-2"
                 id="buildingNumber"
                 {...register("buildingNumber")}
@@ -162,6 +185,7 @@ const AddAddressForm = ({
             <div className="flex-1">
               <Label htmlFor="floorNumber">رقم الطابق</Label>
               <Input
+                type="number"
                 className="mt-2"
                 id="floorNumber"
                 {...register("floorNumber")}
@@ -179,6 +203,7 @@ const AddAddressForm = ({
             <div className="flex-1">
               <Label htmlFor="apartmentNumber">رقم الشقة</Label>
               <Input
+                type="number"
                 className="mt-2"
                 id="apartmentNumber"
                 {...register("apartmentNumber")}

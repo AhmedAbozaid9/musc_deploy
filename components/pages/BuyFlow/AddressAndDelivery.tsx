@@ -10,7 +10,7 @@ export default function AddressAndDelivery() {
   const [showAddressesForm, setShowAddressesForm] = useState(false);
   const [activeAddress, settActiveAddress] = useState("");
 
-  const { data: addresses } = useQuery({
+  const { data: addresses, refetch } = useQuery({
     queryKey: ["addresses"],
     queryFn: getAddresses,
   });
@@ -30,6 +30,7 @@ export default function AddressAndDelivery() {
               }`}
             >
               <AddressCard
+                refetch={refetch}
                 id={address._id}
                 name={address.detailedAddress}
                 fullName={address.fullName}
@@ -56,6 +57,7 @@ export default function AddressAndDelivery() {
       <AddAddressForm
         showForm={showAddressesForm}
         setShowForm={setShowAddressesForm}
+        refetch={refetch}
       />
     </>
   );
