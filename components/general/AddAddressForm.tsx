@@ -1,8 +1,10 @@
 "use client";
+import { addAddress } from "@/apiRequests/address/addAddress";
 import { AddressFormTypes, AddressSchema } from "@/schemas/AddressSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import WhiteArrow from "../Icons/WhiteArrow";
 import { Button } from "../ui/button";
 import { Dialog, DialogContent } from "../ui/dialog";
@@ -28,8 +30,29 @@ const AddAddressForm = ({
     resolver: zodResolver(AddressSchema),
   });
 
+  const handleAddAddress = async (data: AddressFormTypes) => {
+    try {
+      const response = await addAddress(data);
+      setShowForm(false);
+      toast.success("تمت الاضافة بنجاح");
+    } catch (error) {
+      toast.error("حدث خطأ");
+    }
+  };
+  const handleUpdateAddress = async (data: AddressFormTypes) => {
+    try {
+      // Add address logic here
+    } catch (error) {
+      toast.error("حدث خطأ");
+    }
+  };
+
   const onSubmit = (data: AddressFormTypes) => {
-    console.log(data);
+    if (updatedAddressData) {
+      handleUpdateAddress(data);
+    } else {
+      handleAddAddress(data);
+    }
   };
 
   return (
