@@ -21,28 +21,34 @@ export default function AddressAndDelivery() {
           العنوان والتسليم
         </h2>
         <div className="flex flex-col gap-[24px] mt-[24px]">
-          {addresses?.map((address) => (
-            <div
-              key={address._id}
-              className={`${
-                activeAddress === address._id &&
-                "border border-primary rounded-[40px]"
-              }`}
-            >
-              <AddressCard
-                refetch={refetch}
-                id={address._id}
-                name={address.detailedAddress}
-                fullName={address.fullName}
-                address={address.detailedAddress}
-                phone={address.phoneNumber}
-                onClick={() => {
-                  settActiveAddress(address._id);
-                }}
-              />
-            </div>
-          ))}
-
+          {addresses && addresses.length > 0 ? (
+            <>
+              {" "}
+              {addresses?.map((address) => (
+                <div
+                  key={address._id}
+                  className={`${
+                    activeAddress === address._id &&
+                    "border border-primary rounded-[40px]"
+                  }`}
+                >
+                  <AddressCard
+                    refetch={refetch}
+                    id={address._id}
+                    name={address.detailedAddress}
+                    fullName={address.fullName}
+                    address={address.detailedAddress}
+                    phone={address.phoneNumber}
+                    onClick={() => {
+                      settActiveAddress(address._id);
+                    }}
+                  />
+                </div>
+              ))}
+            </>
+          ) : (
+            <p>لا يوجد عنوان</p>
+          )}
           <button
             onClick={() => setShowAddressesForm(true)}
             className="p-[32px] bg-white rounded-[40px] border-[2px] border-[#D0D5DD] flex items-center gap-[15px]"
