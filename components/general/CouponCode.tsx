@@ -12,6 +12,7 @@ export default function CouponCode({
     <>
       <form
         onSubmit={(e) => {
+          e.stopPropagation();
           e.preventDefault();
           handleApplyPromoCode(code);
         }}
