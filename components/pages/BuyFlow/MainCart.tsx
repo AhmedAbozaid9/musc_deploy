@@ -108,7 +108,10 @@ export default function MainCart() {
                     />
                   )}
                   {step === 2 && (
-                    <OrderSummary handleStepChange={handleStepChange} />
+                    <OrderSummary
+                      cart={cart}
+                      handleStepChange={handleStepChange}
+                    />
                   )}
                 </div>
               </div>
