@@ -1,5 +1,6 @@
 "use client";
 
+import { applyPromoCode } from "@/apiRequests/cart/applyPromoCode";
 import { deleteCartItem } from "@/apiRequests/cart/deleteCartItem";
 import { getCart } from "@/apiRequests/cart/getCart";
 import { updateCartItem } from "@/apiRequests/cart/updateCartItem";
@@ -9,7 +10,7 @@ import ConfirmPurchase from "@/components/pages/BuyFlow/ConfirmPurchase";
 import ConfirmPurchaseDetails from "@/components/pages/BuyFlow/ConfirmPurchaseDetails";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import AddressAndDelivery from "./AddressAndDelivery";
 import CartHeader from "./CartHeader";
@@ -21,6 +22,7 @@ export default function MainCart() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const step = parseInt(searchParams.get("step") || "1", 10);
+  const [priceAfterPromo, setPriceAfterPromo] = useState(0);
 
   const { data: cart, isLoading, refetch } = useQuery(["cart"], getCart);
   const handleStepChange = (step: string) => {
@@ -56,7 +58,15 @@ export default function MainCart() {
       toast.error("حدث خطأ ما");
     }
   };
-
+  const handleApplyPromoCode = async (code: string) => {
+    try {
+      const response = await applyPromoCode(code);
+      setPriceAfterPromo(response.totalPriceAfterDiscount);
+      toast.success("تم تطبيق الكوبون بنجاح");
+    } catch (err) {
+      toast.error("حدث خطأ ما");
+    }
+  };
   useEffect(() => {
     if (!searchParams.get("step")) {
       const currentParams = new URLSearchParams(searchParams.toString());
@@ -93,6 +103,8 @@ export default function MainCart() {
                     <CartSummary
                       cart={cart}
                       handleStepChange={handleStepChange}
+                      priceAfterPromo={priceAfterPromo}
+                      handleApplyPromoCode={handleApplyPromoCode}
                     />
                   )}
                   {step === 2 && (
