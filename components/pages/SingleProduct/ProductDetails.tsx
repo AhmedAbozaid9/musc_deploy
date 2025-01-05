@@ -5,13 +5,29 @@ import ShareIcon from "@/components/Icons/ShareIcon";
 import StockIcon from "@/components/Icons/StockIcon";
 import { ProductType } from "@/types/ProductType";
 import toast from "react-hot-toast";
+import { set } from "zod";
+import ColorPicker from "./ColorPicker";
 import ProductActions from "./ProductActions";
 
 interface ProductDetailsProps {
   product: ProductType;
+  handleAddToCart: () => Promise<void>;
+  handleAddToWishlist: () => Promise<void>;
+  quantity: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+  color: string;
+  setColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function ProductDetails({ product }: ProductDetailsProps) {
+export default function ProductDetails({
+  product,
+  handleAddToCart,
+  handleAddToWishlist,
+  quantity,
+  setQuantity,
+  color,
+  setColor,
+}: ProductDetailsProps) {
   const handleCopy = () => {
     const urlToCopy = window.location.href;
     navigator.clipboard
@@ -38,7 +54,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             >
               <ShareIcon />
             </button>
-            <button>
+            <button onClick={handleAddToWishlist}>
               <HeartFavorite />
             </button>
           </div>
@@ -61,9 +77,17 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           </div>
         </div>
         <p className="text-[#787878] text-[16px]">{product.description}</p>
+        <ColorPicker
+          color={color}
+          setColor={setColor}
+          colors={product.colors}
+        />
         <ProductActions
+          quantity={quantity}
+          setQuantity={setQuantity}
           maxQuantity={product.quantity}
           price={product.priceAfterDiscount}
+          handleAddToCart={handleAddToCart}
         />
       </div>
     </>

@@ -1,14 +1,16 @@
 import Image from "next/image";
+import { useState } from "react";
 import DeleteItemCart from "../Icons/DeleteItemCart";
 
 export interface ItemCartType {
   id: string;
   image: string;
   title: string;
-  price: string;
+  price: number;
   category: string;
   count: number;
-  onCountChange: (newCount: number) => void;
+  handleDeleteItem: (id: string) => Promise<void>;
+  handleUpdateItem: (id: string, quantity: number) => Promise<void>;
 }
 const ItemCard: React.FC<ItemCartType> = ({
   id,
@@ -17,17 +19,32 @@ const ItemCard: React.FC<ItemCartType> = ({
   price,
   category,
   count,
-  onCountChange,
+  handleUpdateItem,
+  handleDeleteItem,
 }) => {
-  const onPlus = () => {
-    if (count < 10) {
-      onCountChange(count + 1);
+  const [localQuantity, setLocalQuantity] = useState<number>(count);
+  const onPlus = async () => {
+    if (localQuantity < 10) {
+      setLocalQuantity((prev) => prev + 1);
+      try {
+        await handleUpdateItem(id, localQuantity + 1);
+      } catch (error) {
+        console.log("error happened");
+        setLocalQuantity((prev) => prev - 1);
+        console.log(error);
+      }
     }
   };
 
-  const onMinus = () => {
-    if (count > 1) {
-      onCountChange(count - 1);
+  const onMinus = async () => {
+    if (localQuantity > 1) {
+      setLocalQuantity((prev) => prev + -1);
+      try {
+        await handleUpdateItem(id, localQuantity - 1);
+      } catch (error) {
+        setLocalQuantity((prev) => prev + 1);
+        console.log(error);
+      }
     }
   };
   return (
@@ -63,7 +80,7 @@ const ItemCard: React.FC<ItemCartType> = ({
                     -
                   </button>
                   <h4 className="text-[18px] text-[#1D1B1B] font-[600]">
-                    {count}
+                    {localQuantity}
                   </h4>
                   <button
                     onClick={onPlus}
@@ -73,7 +90,10 @@ const ItemCard: React.FC<ItemCartType> = ({
                   </button>
                 </div>
               </div>
-              <button className="flex gap-[8px] mx-auto mt-[18px] text-[#F80022] text-[16px]">
+              <button
+                onClick={() => handleDeleteItem(id)}
+                className="flex gap-[8px] mx-auto mt-[18px] text-[#F80022] text-[16px]"
+              >
                 <DeleteItemCart />
                 ازاله
               </button>

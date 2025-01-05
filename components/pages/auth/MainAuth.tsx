@@ -32,7 +32,7 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
     try {
       const response = await signIn(data);
       toast.success("تم تسحيل الدخول");
-      setUser(response);
+      setUser(response.user);
       Cookies.set("musc-token", response.token);
       setShowSignup(false);
     } catch (err) {

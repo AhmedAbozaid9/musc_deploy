@@ -30,7 +30,7 @@ export default function OnSaleProducts() {
             </h2>
             <Button className="bg-primary text-secondary w-fit">
               <Link
-                href={routes?.Shop}
+                href={routes?.Offers}
                 className="flex items-center gap-[16px]"
               >
                 تسوق الان
