@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 interface OrderSummaryProps {
-  handleStepChange: (step: string) => void;
+  handleCheckout: () => Promise<void>;
   cart: CartTypes;
 }
 
 export default function OrderSummary({
-  handleStepChange,
+  handleCheckout,
   cart,
 }: OrderSummaryProps) {
   console.log("CART", cart);
@@ -115,7 +115,7 @@ export default function OrderSummary({
           </div>
 
           <Button
-            onClick={() => handleStepChange("3")}
+            onClick={handleCheckout}
             className="bg-primary text-secondary w-full lg:mt-[80px] mt-[40px]"
           >
             الحفظ و الاستمرار <WhiteArrow />

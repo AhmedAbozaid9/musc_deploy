@@ -6,9 +6,14 @@ import AddAddressIcon from "@/components/Icons/AddAddressIcon";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
-export default function AddressAndDelivery() {
+export default function AddressAndDelivery({
+  selectedAddress,
+  setSelectedAddress,
+}: {
+  selectedAddress: string;
+  setSelectedAddress: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const [showAddressesForm, setShowAddressesForm] = useState(false);
-  const [activeAddress, settActiveAddress] = useState("");
 
   const { data: addresses, refetch } = useQuery({
     queryKey: ["addresses"],
@@ -28,7 +33,7 @@ export default function AddressAndDelivery() {
                 <div
                   key={address._id}
                   className={`${
-                    activeAddress === address._id &&
+                    selectedAddress === address._id &&
                     "border border-primary rounded-[40px]"
                   }`}
                 >
@@ -40,7 +45,7 @@ export default function AddressAndDelivery() {
                     address={address.detailedAddress}
                     phone={address.phoneNumber}
                     onClick={() => {
-                      settActiveAddress(address._id);
+                      setSelectedAddress(address._id);
                     }}
                   />
                 </div>

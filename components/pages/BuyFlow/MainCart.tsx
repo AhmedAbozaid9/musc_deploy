@@ -1,6 +1,7 @@
 "use client";
 
 import { applyPromoCode } from "@/apiRequests/cart/applyPromoCode";
+import { checkout } from "@/apiRequests/cart/checkout";
 import { deleteCartItem } from "@/apiRequests/cart/deleteCartItem";
 import { getCart } from "@/apiRequests/cart/getCart";
 import { updateCartItem } from "@/apiRequests/cart/updateCartItem";
@@ -22,9 +23,11 @@ export default function MainCart() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const step = parseInt(searchParams.get("step") || "1", 10);
+  const [selectedAddress, setSelectedAddress] = useState("");
   const [priceAfterPromo, setPriceAfterPromo] = useState(0);
 
   const { data: cart, isLoading, refetch } = useQuery(["cart"], getCart);
+
   const handleStepChange = (step: string) => {
     const params = new URLSearchParams(searchParams?.toString() || "");
     params.set("step", step);
@@ -67,6 +70,16 @@ export default function MainCart() {
       toast.error("حدث خطأ ما");
     }
   };
+  const handleCheckout = async () => {
+    try {
+      await checkout(selectedAddress);
+      toast.success("تم ارسال الطلب بنجاح");
+      handleStepChange("3");
+    } catch (err) {
+      toast.error("حدث خطأ ما");
+    }
+  };
+
   useEffect(() => {
     if (!searchParams.get("step")) {
       const currentParams = new URLSearchParams(searchParams.toString());
@@ -96,7 +109,12 @@ export default function MainCart() {
                       handleDeleteItem={handleDeleteItem}
                     />
                   )}
-                  {step === 2 && <AddressAndDelivery />}
+                  {step === 2 && (
+                    <AddressAndDelivery
+                      selectedAddress={selectedAddress}
+                      setSelectedAddress={setSelectedAddress}
+                    />
+                  )}
                 </div>
                 <div className="lg:w-[40%] w-full">
                   {step === 1 && (
@@ -108,10 +126,7 @@ export default function MainCart() {
                     />
                   )}
                   {step === 2 && (
-                    <OrderSummary
-                      cart={cart}
-                      handleStepChange={handleStepChange}
-                    />
+                    <OrderSummary cart={cart} handleCheckout={handleCheckout} />
                   )}
                 </div>
               </div>
