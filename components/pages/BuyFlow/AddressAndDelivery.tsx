@@ -1,9 +1,11 @@
 "use client";
+import AddAddressForm from "@/components/general/AddAddressForm";
 import AddressCard from "@/components/general/AddressCard";
 import AddAddressIcon from "@/components/Icons/AddAddressIcon";
 import { useState } from "react";
 
 export default function AddressAndDelivery() {
+  const [showAddressesForm, setShowAddressesForm] = useState(false);
   const [activeAddress, settActiveAddress] = useState("");
   return (
     <>
@@ -44,14 +46,21 @@ export default function AddressAndDelivery() {
               }}
             />
           </div>
-          <div className="p-[32px] bg-white rounded-[40px] border-[2px] border-[#D0D5DD] flex items-center gap-[15px]">
+          <button
+            onClick={() => setShowAddressesForm(true)}
+            className="p-[32px] bg-white rounded-[40px] border-[2px] border-[#D0D5DD] flex items-center gap-[15px]"
+          >
             <AddAddressIcon />
             <h4 className="lg:text-[24px] font-[500] text-[18px]">
               اضف عنوان جديد
             </h4>
-          </div>
+          </button>
         </div>
       </div>
+      <AddAddressForm
+        showForm={showAddressesForm}
+        setShowForm={setShowAddressesForm}
+      />
     </>
   );
 }
