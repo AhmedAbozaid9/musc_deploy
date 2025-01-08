@@ -29,7 +29,7 @@ const Account = ({ orders, slug, setSlug }: AccountProps) => {
               <ArrowLeft />
             </button>
           </div>
-          <div className="flex flex-wrap gap-7">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7">
             <AddressCard
               id={"1"}
               name={"ahmed"}

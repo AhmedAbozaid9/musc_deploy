@@ -4,7 +4,7 @@ import React from "react";
 
 const Addresses = () => {
   return (
-    <div className="flex gap-6 flex-wrap">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7">
       <AddressCard
         id={"1"}
         name={"ahmed"}
@@ -21,7 +21,7 @@ const Addresses = () => {
         phone={"123"}
         onClick={() => {}}
       />
-      <button className="text-2xl flex items-center gap-4 text-[#1E1E1E] font-medium px-[32px] py-[80px] bg-white rounded-[40px] w-[350px] border-2 border-[#808E98]">
+      <button className="text-2xl flex items-center  text-[#1E1E1E] font-medium px-[32px] py-[80px] bg-white rounded-[40px] max-w-[350px] border-2 border-[#808E98]">
         <AddNewAddress />
         اضف عنوان جديد
       </button>

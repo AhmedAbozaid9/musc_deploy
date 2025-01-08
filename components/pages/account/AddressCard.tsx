@@ -21,7 +21,7 @@ const AddressCard: React.FC<AddressType> = ({
   return (
     <>
       <div
-        className="p-[32px] bg-white rounded-[40px] w-[350px] border-2 border-black"
+        className="p-[32px] bg-white rounded-[40px] max-w-[350px] border-2 border-black"
         onClick={onClick}
       >
         <div className="flex items-center justify-between mb-[16px]">
