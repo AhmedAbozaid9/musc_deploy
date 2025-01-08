@@ -35,7 +35,7 @@ const AccountLayout = ({
   return (
     <div className="container">
       <Brudcambs name="حسابي " />
-      <div className="flex max-sm:flex-col gap-6">
+      <div className="flex max-md:flex-col gap-6">
         <div className="flex flex-col gap-6 lg:w-1/3">
           <div className="flex items-center gap-3 bg-black text-white p-7 rounded-[32px]">
             <User />
