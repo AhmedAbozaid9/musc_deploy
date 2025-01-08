@@ -1,4 +1,5 @@
 "use client";
+import { getAddresses } from "@/apiRequests/address/getAddresses";
 import { getOrders } from "@/apiRequests/orders/getOrders";
 import Loading from "@/components/general/Loading";
 import ArrowLeft from "@/components/Icons/account/ArrowLeft";
@@ -24,7 +25,10 @@ const MainAccount = () => {
     queryKey: ["orders"],
     queryFn: getOrders,
   });
-
+  const { data: addresses, isLoading: addressesLoading } = useQuery({
+    queryKey: ["addresses"],
+    queryFn: getAddresses,
+  });
   const handleLogout = () => {
     localStorage.removeItem("musc-token");
     setUser(null);
@@ -39,11 +43,18 @@ const MainAccount = () => {
         <h2 className="font-semibold text-lg sm:text-2xl mb-3">{title}</h2>
         <hr />
         <div className="mt-6">
-          {slug === "account" && orders && (
-            <Account orders={orders} slug={slug} setSlug={setSlug} />
+          {slug === "account" && addresses && orders && (
+            <Account
+              orders={orders}
+              addresses={addresses}
+              slug={slug}
+              setSlug={setSlug}
+            />
           )}
           {slug === "orders" && orders && <Orders orders={orders} />}
-          {slug === "addresses" && <Addresses />}
+          {slug === "addresses" && addresses && (
+            <Addresses addresses={addresses} />
+          )}
           {slug === "favorites" && <Favorites />}
           {slug === "settings" && <Settings />}
         </div>

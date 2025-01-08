@@ -1,3 +1,4 @@
+import { AddressTypes } from "@/apiRequests/address/getAddresses";
 import { OrderTypes } from "@/apiRequests/orders/getOrders";
 import ArrowLeft from "@/components/Icons/account/ArrowLeft";
 import AddressCard from "@/components/pages/account/AddressCard";
@@ -7,11 +8,12 @@ import React from "react";
 
 interface AccountProps {
   orders: OrderTypes[];
+  addresses: AddressTypes[];
   slug: string;
   setSlug: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Account = ({ orders, slug, setSlug }: AccountProps) => {
+const Account = ({ orders, addresses, slug, setSlug }: AccountProps) => {
   return (
     <div>
       <div className="my-7" />
@@ -30,30 +32,17 @@ const Account = ({ orders, slug, setSlug }: AccountProps) => {
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7">
-            <AddressCard
-              id={"1"}
-              name={"ahmed"}
-              fullName={"nyaa"}
-              address={"adfsfd"}
-              phone={"123"}
-              onClick={() => {}}
-            />
-            <AddressCard
-              id={"1"}
-              name={"ahmed"}
-              fullName={"nyaa"}
-              address={"adfsfd"}
-              phone={"123"}
-              onClick={() => {}}
-            />
-            <AddressCard
-              id={"1"}
-              name={"ahmed"}
-              fullName={"nyaa"}
-              address={"adfsfd"}
-              phone={"123"}
-              onClick={() => {}}
-            />
+            {addresses.map((address) => (
+              <AddressCard
+                key={address._id}
+                id={address._id}
+                name={address.fullName}
+                fullName={address.fullName}
+                address={address.detailedAddress}
+                phone={address.phoneNumber}
+                onClick={() => {}}
+              />
+            ))}
           </div>
         </div>
       </div>
