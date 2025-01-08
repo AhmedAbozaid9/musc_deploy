@@ -5,9 +5,10 @@ import React from "react";
 
 interface AddressesProps {
   addresses: AddressTypes[];
+  refetch: () => void;
 }
 
-const Addresses = ({ addresses }: AddressesProps) => {
+const Addresses = ({ addresses, refetch }: AddressesProps) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7">
       {addresses.map((address) => (
@@ -18,7 +19,7 @@ const Addresses = ({ addresses }: AddressesProps) => {
           fullName={address.fullName}
           address={address.detailedAddress}
           phone={address.phoneNumber}
-          onClick={() => {}}
+          refetch={refetch}
         />
       ))}
 

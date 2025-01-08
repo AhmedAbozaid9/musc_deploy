@@ -11,9 +11,16 @@ interface AccountProps {
   addresses: AddressTypes[];
   slug: string;
   setSlug: React.Dispatch<React.SetStateAction<string>>;
+  refetch: () => void;
 }
 
-const Account = ({ orders, addresses, slug, setSlug }: AccountProps) => {
+const Account = ({
+  orders,
+  addresses,
+  slug,
+  setSlug,
+  refetch,
+}: AccountProps) => {
   return (
     <div>
       <div className="my-7" />
@@ -40,7 +47,7 @@ const Account = ({ orders, addresses, slug, setSlug }: AccountProps) => {
                 fullName={address.fullName}
                 address={address.detailedAddress}
                 phone={address.phoneNumber}
-                onClick={() => {}}
+                refetch={refetch}
               />
             ))}
           </div>

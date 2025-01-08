@@ -25,7 +25,11 @@ const MainAccount = () => {
     queryKey: ["orders"],
     queryFn: getOrders,
   });
-  const { data: addresses, isLoading: addressesLoading } = useQuery({
+  const {
+    data: addresses,
+    isLoading: addressesLoading,
+    refetch: refetchAddresses,
+  } = useQuery({
     queryKey: ["addresses"],
     queryFn: getAddresses,
   });
@@ -34,7 +38,7 @@ const MainAccount = () => {
     setUser(null);
     window.location.href = "/";
   };
-  if (ordersLoading) {
+  if (ordersLoading || addressesLoading) {
     return <Loading />;
   }
   return (
@@ -49,11 +53,12 @@ const MainAccount = () => {
               addresses={addresses}
               slug={slug}
               setSlug={setSlug}
+              refetch={refetchAddresses}
             />
           )}
           {slug === "orders" && orders && <Orders orders={orders} />}
           {slug === "addresses" && addresses && (
-            <Addresses addresses={addresses} />
+            <Addresses refetch={refetchAddresses} addresses={addresses} />
           )}
           {slug === "favorites" && <Favorites />}
           {slug === "settings" && <Settings />}
