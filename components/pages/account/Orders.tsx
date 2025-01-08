@@ -50,8 +50,11 @@ const Orders = ({ orders, slug, setSlug }: OrdersProps) => {
         </TableHeader>
         <TableBody>
           {orders.map((order) => (
-            <TableRow key={order.orderId} className="!rounded-3xl my-[18px]">
-              <TableCell>{order.orderId}</TableCell>
+            <TableRow
+              key={order.orderNumber}
+              className="!rounded-3xl my-[18px]"
+            >
+              <TableCell>{order.orderNumber}</TableCell>
               <TableCell>{order.totalOrderPrice} EGP</TableCell>
               <TableCell>{order.address.addressTitle}</TableCell>
               <TableCell>{order.products.length}</TableCell>
