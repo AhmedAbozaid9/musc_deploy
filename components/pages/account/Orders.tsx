@@ -1,5 +1,5 @@
+import { OrderTypes } from "@/apiRequests/orders/getOrders";
 import ArrowLeft from "@/components/Icons/account/ArrowLeft";
-import React from "react";
 import {
   Table,
   TableBody,
@@ -9,12 +9,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import React from "react";
 interface OrdersProps {
+  orders: OrderTypes[];
   slug?: string;
   setSlug?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Orders = ({ slug, setSlug }: OrdersProps) => {
+const Orders = ({ orders, slug, setSlug }: OrdersProps) => {
   return (
     <div>
       {slug === "account" && setSlug && (
@@ -47,30 +49,18 @@ const Orders = ({ slug, setSlug }: OrdersProps) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow className="!rounded-3xl my-[18px]">
-            <TableCell>10000001</TableCell>
-            <TableCell>1600 EGP</TableCell>
-            <TableCell>المنزل</TableCell>
-            <TableCell>اسم المنتج</TableCell>
-            <TableCell>12-2-2024 </TableCell>
-            <TableCell className="text-[#0DA47A]">تم التوصيل </TableCell>
-          </TableRow>
-          <TableRow className="!rounded-3xl">
-            <TableCell>10000001</TableCell>
-            <TableCell>1600 EGP</TableCell>
-            <TableCell>المنزل</TableCell>
-            <TableCell>اسم المنتج</TableCell>
-            <TableCell>12-2-2024 </TableCell>
-            <TableCell className="text-[#0DA47A]">تم التوصيل </TableCell>
-          </TableRow>
-          <TableRow className="!rounded-3xl">
-            <TableCell>10000001</TableCell>
-            <TableCell>1600 EGP</TableCell>
-            <TableCell>المنزل</TableCell>
-            <TableCell>اسم المنتج</TableCell>
-            <TableCell>12-2-2024 </TableCell>
-            <TableCell className="text-[#0DA47A]">تم التوصيل </TableCell>
-          </TableRow>
+          {orders.map((order) => (
+            <TableRow key={order.orderId} className="!rounded-3xl my-[18px]">
+              <TableCell>{order.orderId}</TableCell>
+              <TableCell>{order.totalOrderPrice} EGP</TableCell>
+              <TableCell>{order.address.addressTitle}</TableCell>
+              <TableCell>{order.products.length}</TableCell>
+              <TableCell>{order.createdAt}</TableCell>
+              <TableCell className="text-[#0DA47A]">
+                {order.orderStatus}
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </div>

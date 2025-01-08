@@ -1,3 +1,4 @@
+import { OrderTypes } from "@/apiRequests/orders/getOrders";
 import ArrowLeft from "@/components/Icons/account/ArrowLeft";
 import AddressCard from "@/components/pages/account/AddressCard";
 import BillsAndPayments from "@/components/pages/account/BillsAndPayments";
@@ -5,14 +6,15 @@ import Orders from "@/components/pages/account/Orders";
 import React from "react";
 
 interface AccountProps {
+  orders: OrderTypes[];
   slug: string;
   setSlug: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Account = ({ slug, setSlug }: AccountProps) => {
+const Account = ({ orders, slug, setSlug }: AccountProps) => {
   return (
     <div>
-      <Orders slug={slug} setSlug={setSlug} />
+      <Orders orders={orders} slug={slug} setSlug={setSlug} />
       <div className="my-7" />
       <div className="flex gap-7">
         <BillsAndPayments slug={slug} setSlug={setSlug} />
