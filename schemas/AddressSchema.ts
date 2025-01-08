@@ -1,34 +1,31 @@
 import { z } from "zod";
 
 export const AddressSchema = z.object({
-  fullName: z.string().min(1, "Full name is required"),
+  fullName: z.string().min(1, "الاسم الكامل مطلوب"),
   phoneNumber: z
     .string()
-    .min(10, "Phone number must be at least 10 characters")
-    .regex(/^\d+$/, "Phone number must contain only digits"),
+    .min(10, "يجب أن يكون رقم الهاتف 10 أحرف على الأقل")
+    .regex(/^\d+$/, "يجب أن يحتوي رقم الهاتف على أرقام فقط"),
   alternativePhoneNumber: z.string().optional().nullable(),
-  region: z.string().min(1, "Region is required"),
-  addressTitle: z.string().min(1, "Address title is required"),
-  detailedAddress: z.string().min(1, "Detailed address is required"),
+  region: z.string().min(1, "المنطقة مطلوبة"),
+  addressTitle: z.string().min(1, "عنوان العنوان مطلوب"),
+  detailedAddress: z.string().min(1, "العنوان التفصيلي مطلوب"),
   buildingNumber: z
     .string()
-    .min(1, "Building number is required")
-    .regex(/^\d+$/, "Building number must be numeric"),
+    .min(1, "رقم المبنى مطلوب")
+    .regex(/^\d+$/, "يجب أن يكون رقم المبنى رقمياً"),
   floorNumber: z
     .string()
-    .min(1, "Floor number is required")
-    .regex(/^\d+$/, "Floor number must be numeric"),
+    .min(1, "رقم الطابق مطلوب")
+    .regex(/^\d+$/, "يجب أن يكون رقم الطابق رقمياً"),
   apartmentNumber: z
     .string()
-    .min(1, "Apartment number is required")
-    .regex(/^\d+$/, "Apartment number must be numeric"),
+    .min(1, "رقم الشقة مطلوب")
+    .regex(/^\d+$/, "يجب أن يكون رقم الشقة رقمياً"),
   landmark: z.string().optional(),
   countryCode: z
     .string()
-    .regex(
-      /^\+\d+$/,
-      "Country code must start with '+' and be followed by digits"
-    ),
+    .regex(/^\+\d+$/, "يجب أن يبدأ رمز البلد بعلامة '+' ويليه أرقام"),
 });
 
 export type AddressFormTypes = z.infer<typeof AddressSchema>;
