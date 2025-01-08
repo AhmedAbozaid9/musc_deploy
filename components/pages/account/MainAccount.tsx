@@ -43,7 +43,6 @@ const MainAccount = () => {
             <Account orders={orders} slug={slug} setSlug={setSlug} />
           )}
           {slug === "orders" && orders && <Orders orders={orders} />}
-          {slug === "bills" && <BillsAndPayments />}
           {slug === "addresses" && <Addresses />}
           {slug === "favorites" && <Favorites />}
           {slug === "settings" && <Settings />}

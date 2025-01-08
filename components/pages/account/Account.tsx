@@ -14,12 +14,12 @@ interface AccountProps {
 const Account = ({ orders, slug, setSlug }: AccountProps) => {
   return (
     <div>
-      <Orders orders={orders} slug={slug} setSlug={setSlug} />
       <div className="my-7" />
-      <div className="flex gap-7">
-        <BillsAndPayments slug={slug} setSlug={setSlug} />
+      <div className="gap-7">
+        <Orders orders={orders} slug={slug} setSlug={setSlug} />
+
         <div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mt-7">
             <h3 className="text-xl font-semibold mb-4">العناوين</h3>
             <button
               onClick={() => setSlug("addresses")}
@@ -29,14 +29,32 @@ const Account = ({ orders, slug, setSlug }: AccountProps) => {
               <ArrowLeft />
             </button>
           </div>
-          <AddressCard
-            id={"1"}
-            name={"ahmed"}
-            fullName={"nyaa"}
-            address={"adfsfd"}
-            phone={"123"}
-            onClick={() => {}}
-          />
+          <div className="flex flex-wrap gap-7">
+            <AddressCard
+              id={"1"}
+              name={"ahmed"}
+              fullName={"nyaa"}
+              address={"adfsfd"}
+              phone={"123"}
+              onClick={() => {}}
+            />
+            <AddressCard
+              id={"1"}
+              name={"ahmed"}
+              fullName={"nyaa"}
+              address={"adfsfd"}
+              phone={"123"}
+              onClick={() => {}}
+            />
+            <AddressCard
+              id={"1"}
+              name={"ahmed"}
+              fullName={"nyaa"}
+              address={"adfsfd"}
+              phone={"123"}
+              onClick={() => {}}
+            />
+          </div>
         </div>
       </div>
     </div>
