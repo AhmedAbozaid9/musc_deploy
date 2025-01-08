@@ -11,7 +11,10 @@ const Favorites = () => {
     data: favorites = [],
     isLoading,
     refetch,
-  } = useQuery<ProductType[]>(["favorites"], getWishlist);
+  } = useQuery<ProductType[]>(["favorites"], getWishlist, {
+    retry: false,
+  });
+  console.log("wishlist", favorites);
   return (
     <>
       {!isLoading ? (
