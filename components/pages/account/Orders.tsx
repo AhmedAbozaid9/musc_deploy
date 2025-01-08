@@ -55,7 +55,9 @@ const Orders = ({ orders, slug, setSlug }: OrdersProps) => {
               <TableCell>{order.totalOrderPrice} EGP</TableCell>
               <TableCell>{order.address.addressTitle}</TableCell>
               <TableCell>{order.products.length}</TableCell>
-              <TableCell>{order.createdAt}</TableCell>
+              <TableCell>
+                {new Date(order.createdAt).toLocaleString()}
+              </TableCell>
               <TableCell className="text-[#0DA47A]">
                 {order.orderStatus}
               </TableCell>
