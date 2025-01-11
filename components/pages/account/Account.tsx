@@ -7,8 +7,8 @@ import Orders from "@/components/pages/account/Orders";
 import React from "react";
 
 interface AccountProps {
-  orders: OrderTypes[];
-  addresses: AddressTypes[];
+  orders?: OrderTypes[];
+  addresses?: AddressTypes[];
   slug: string;
   setSlug: React.Dispatch<React.SetStateAction<string>>;
   refetch: () => void;
@@ -25,7 +25,11 @@ const Account = ({
     <div>
       <div className="my-7" />
       <div className="gap-7">
-        <Orders orders={orders} slug={slug} setSlug={setSlug} />
+        {orders ? (
+          <Orders orders={orders} slug={slug} setSlug={setSlug} />
+        ) : (
+          <p>لا توجد طلبات</p>
+        )}
 
         <div>
           <div className="flex items-center justify-between mt-7">
@@ -39,17 +43,21 @@ const Account = ({
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7">
-            {addresses.map((address) => (
-              <AddressCard
-                key={address._id}
-                id={address._id}
-                name={address.fullName}
-                fullName={address.fullName}
-                address={address.detailedAddress}
-                phone={address.phoneNumber}
-                refetch={refetch}
-              />
-            ))}
+            {addresses && addresses.length > 0 ? (
+              addresses.map((address) => (
+                <AddressCard
+                  key={address._id}
+                  id={address._id}
+                  name={address.fullName}
+                  fullName={address.fullName}
+                  address={address.detailedAddress}
+                  phone={address.phoneNumber}
+                  refetch={refetch}
+                />
+              ))
+            ) : (
+              <p>لا توجد عناوين</p>
+            )}
           </div>
         </div>
       </div>

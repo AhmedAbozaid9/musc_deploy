@@ -24,6 +24,7 @@ const MainAccount = () => {
   const { data: orders, isLoading: ordersLoading } = useQuery({
     queryKey: ["orders"],
     queryFn: getOrders,
+    retry: false,
   });
   const {
     data: addresses,
@@ -32,6 +33,7 @@ const MainAccount = () => {
   } = useQuery({
     queryKey: ["addresses"],
     queryFn: getAddresses,
+    retry: false,
   });
   const handleLogout = () => {
     localStorage.removeItem("musc-token");
@@ -41,13 +43,14 @@ const MainAccount = () => {
   if (ordersLoading || addressesLoading) {
     return <Loading />;
   }
+  console.log(orders);
   return (
     <div>
       <AccountLayout slug={slug} setSlug={setSlug} handleLogout={handleLogout}>
         <h2 className="font-semibold text-lg sm:text-2xl mb-3">{title}</h2>
         <hr />
         <div className="mt-6">
-          {slug === "account" && addresses && orders && (
+          {slug === "account" && (
             <Account
               orders={orders}
               addresses={addresses}
@@ -57,7 +60,7 @@ const MainAccount = () => {
             />
           )}
           {slug === "orders" && orders && <Orders orders={orders} />}
-          {slug === "addresses" && addresses && (
+          {slug === "addresses" && (
             <Addresses refetch={refetchAddresses} addresses={addresses} />
           )}
           {slug === "favorites" && <Favorites />}
