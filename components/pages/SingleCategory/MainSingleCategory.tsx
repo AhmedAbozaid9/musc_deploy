@@ -9,12 +9,17 @@ import Brudcambs from "@/components/general/Brudcambs";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getBestSelling } from "@/apiRequests/products/getBestSelling";
+import { getAllProducts } from "@/apiRequests/products/getAllProducts";
+import { Key } from "react";
 
 export default function MainSingleCategory() {
   const params = useParams();
   const categoryId = params.slug;
   const isOffers = categoryId === "offers";
-  const { data: onSale } = useQuery(["bestSelling"], getBestSelling);
+  const { data: products } = useQuery(
+    ["bestSelling", categoryId],
+    isOffers ? getBestSelling : () => getAllProducts(categoryId as string),
+  );
 
   return (
     <>
@@ -43,18 +48,31 @@ export default function MainSingleCategory() {
           </div>
         </div>
         <div className="grid lg:grid-cols-2 gap-[26px] grid-cols-1 w-full">
-          {onSale?.map((item) => (
-            <ProductCard
-              key={item.id}
-              link={routes?.Product?.POST(item.id)}
-              id={item.id}
-              offer={8}
-              image={item.imageCover}
-              category={""}
-              name={item.title}
-              price={item.price}
-            />
-          ))}
+          {products?.length > 0 ? (
+            <>
+              {products?.map(
+                (item: {
+                  id: Key | null | undefined;
+                  imageCover: string;
+                  title: string;
+                  price: number;
+                }) => (
+                  <ProductCard
+                    key={item.id}
+                    link={routes?.Product?.POST(item.id as string)}
+                    id={item.id as string}
+                    offer={8}
+                    image={item.imageCover}
+                    category={""}
+                    name={item.title}
+                    price={item.price}
+                  />
+                ),
+              )}
+            </>
+          ) : (
+            <p>لا توجد منتجات</p>
+          )}
         </div>
       </div>
     </>
