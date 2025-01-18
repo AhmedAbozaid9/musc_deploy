@@ -18,7 +18,7 @@ export const HeaderLinks: HeaderType[] = [
     title: "المنتجات الصحيه",
   },
   {
-    link: routes.Offers,
+    link: routes.Category.POST("offers"),
     title: "العروض",
   },
 ];
