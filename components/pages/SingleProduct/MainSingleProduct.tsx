@@ -21,7 +21,6 @@ const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
   const token = Cookies.get("musc-token");
   const [quantity, setQuantity] = React.useState(1);
   const [color, setColor] = React.useState("");
-  console.log(productId);
   const { data: product } = useQuery(["product", productId], () =>
     getSingleProduct(productId),
   );
