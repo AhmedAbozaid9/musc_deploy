@@ -6,6 +6,8 @@ export type CartItemTypes = {
   selectedColor: string;
   price: number;
   quantity: number;
+  imageCover: string;
+  description: string;
 };
 
 export type CartTypes = {
