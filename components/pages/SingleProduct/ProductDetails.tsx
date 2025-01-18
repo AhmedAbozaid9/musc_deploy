@@ -12,7 +12,7 @@ import ProductActions from "./ProductActions";
 interface ProductDetailsProps {
   product: ProductType;
   handleAddToCart: () => Promise<void>;
-  handleAddToWishlist: () => Promise<void>;
+  handleAddToWishlist: () => Promise<void | undefined>;
   quantity: number;
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
   color: string;
