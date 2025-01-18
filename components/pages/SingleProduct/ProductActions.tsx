@@ -8,7 +8,7 @@ import { useState } from "react";
 interface ProductActionsProps {
   price: number;
   maxQuantity: number;
-  handleAddToCart: () => Promise<void>;
+  handleAddToCart: () => Promise<string | undefined>;
   quantity: number;
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }

@@ -29,6 +29,9 @@ const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
   //   () => getRelatedProducts(productId),
   // );
   const handleAddToWishlist = async () => {
+    if (!token) {
+      return toast.error("يرجى تسجيل الدخول اولا");
+    }
     try {
       const res = await addWishlist(productId);
       toast.success("تمت الاضافة الي المفضلة");

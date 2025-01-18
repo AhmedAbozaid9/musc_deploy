@@ -59,7 +59,7 @@ const MainAccount = () => {
               refetch={refetchAddresses}
             />
           )}
-          {slug === "orders" && orders && <Orders orders={orders} />}
+          {slug === "orders" && <Orders orders={orders} />}
           {slug === "addresses" && (
             <Addresses refetch={refetchAddresses} addresses={addresses} />
           )}
