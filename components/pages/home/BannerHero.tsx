@@ -11,7 +11,6 @@ import "slick-carousel/slick/slick.css";
 
 export default function BannerHero() {
   const { data: banners, isLoading } = useQuery(["banners"], getBanners);
-  console.log(banners && banners[0].imageUrl);
 
   // Carousel settings
   const settings = {

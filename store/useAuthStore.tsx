@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { create } from "zustand";
 
 export interface UserTypes {
+  _id: string;
   username: string;
   email: string;
   phoneNumber: number;
