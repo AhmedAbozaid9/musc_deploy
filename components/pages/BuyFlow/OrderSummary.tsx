@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 interface OrderSummaryProps {
-  handleCheckout: () => Promise<void>;
+  handleCheckout: () => Promise<string | undefined>;
   cart: CartTypes;
 }
 
@@ -37,9 +37,7 @@ export default function OrderSummary({
                     className="w-[90px] h-[90px] rounded-[17px]"
                   />
                   <div className="flex flex-col gap-[8px]">
-                    <h4 className="text-black text-[18px]">
-                      {item.description}
-                    </h4>
+                    <h4 className="text-black text-[18px]">{item.title}</h4>
                     <p className="text-black text-[14px] font-[400]">
                       الكميه : {item.quantity}
                     </p>

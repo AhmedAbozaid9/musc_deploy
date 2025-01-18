@@ -32,6 +32,9 @@ const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
     if (!token) {
       return toast.error("يرجى تسجيل الدخول اولا");
     }
+    if (!color) {
+      return toast.error("يرجى اختيار لون");
+    }
     try {
       const res = await addWishlist(productId);
       toast.success("تمت الاضافة الي المفضلة");

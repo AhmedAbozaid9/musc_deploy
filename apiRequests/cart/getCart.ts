@@ -2,7 +2,7 @@ import { axios } from "@/lib/axios";
 
 export type CartItemTypes = {
   productId: string;
-  name: string; // needed
+  title: string;
   selectedColor: string;
   price: number;
   quantity: number;

@@ -71,6 +71,9 @@ export default function MainCart() {
     }
   };
   const handleCheckout = async () => {
+    if (!selectedAddress) {
+      return toast.error("يرجى اختيار عنوان");
+    }
     try {
       await checkout(selectedAddress);
       toast.success("تم ارسال الطلب بنجاح");
@@ -132,8 +135,11 @@ export default function MainCart() {
               </div>
               {step === 3 && (
                 <div>
-                  <ConfirmPurchase />
-                  <ConfirmPurchaseDetails />
+                  <ConfirmPurchase cart={cart} />
+                  <ConfirmPurchaseDetails
+                    cart={cart}
+                    selectedAddress={selectedAddress}
+                  />
                 </div>
               )}
             </>
