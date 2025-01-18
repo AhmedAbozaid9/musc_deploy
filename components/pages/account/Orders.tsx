@@ -31,7 +31,7 @@ const Orders = ({ orders, slug, setSlug }: OrdersProps) => {
           </button>
         </div>
       )}
-      {orders ? (
+      {orders?.length ? (
         <Table>
           <TableHeader className="!rounded-3xl">
             <TableRow className=" border-b-0 ">
@@ -76,7 +76,7 @@ const Orders = ({ orders, slug, setSlug }: OrdersProps) => {
           </TableBody>
         </Table>
       ) : (
-        <p>لا توجد طلبات</p>
+        <p className="mb-32 sm:mb-48">لا توجد طلبات</p>
       )}
     </div>
   );
