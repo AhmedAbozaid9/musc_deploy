@@ -1,11 +1,13 @@
+"use client";
 import Image from "next/image";
 import { useState } from "react";
 import DeleteItemCart from "../Icons/DeleteItemCart";
+import { useQuery } from "@tanstack/react-query";
+import { getSingleProduct } from "@/apiRequests/products/getSingleProduct";
 
 export interface ItemCartType {
   id: string;
   image: string;
-  title: string;
   price: number;
   category: string;
   count: number;
@@ -15,13 +17,17 @@ export interface ItemCartType {
 const ItemCard: React.FC<ItemCartType> = ({
   id,
   image,
-  title,
   price,
   category,
   count,
   handleUpdateItem,
   handleDeleteItem,
 }) => {
+  const { data: product } = useQuery({
+    queryKey: ["product", id],
+    queryFn: () => getSingleProduct(id),
+  });
+
   const [localQuantity, setLocalQuantity] = useState<number>(count);
   const onPlus = async () => {
     if (localQuantity < 10) {
@@ -52,7 +58,7 @@ const ItemCard: React.FC<ItemCartType> = ({
       <div className="py-[32px] px-[24px] flex lg:items-center items-start gap-[22px]  rounded-[32px] bg-[#fff]">
         <Image
           src={image}
-          alt={title}
+          alt={product?.title || ""}
           width={150}
           height={150}
           className="rounded-[16px] lg:w-[150px] w-[50px] lg:h-[150px] h-[50px]"
@@ -63,7 +69,7 @@ const ItemCard: React.FC<ItemCartType> = ({
               {category}
             </p>
             <h2 className="text-[#333] lg:text-[24px] text-[18px] font-[400]">
-              {title}
+              {product?.title}
             </h2>
           </div>
           <div className="flex flex-col gap-[8px]">

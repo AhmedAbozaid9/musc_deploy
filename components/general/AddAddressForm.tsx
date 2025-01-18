@@ -98,7 +98,7 @@ const AddAddressForm = ({
               <Label htmlFor="phoneNumber">رقم الهاتف</Label>
               <Input
                 defaultValue={phoneNumber}
-                type="numberp"
+                type="number"
                 className="mt-2"
                 id="phoneNumber"
                 {...register("phoneNumber")}
@@ -118,6 +118,7 @@ const AddAddressForm = ({
               <Input
                 type="number"
                 id="alternativePhoneNumber"
+                className="mt-2"
                 {...register("alternativePhoneNumber")}
               />
               {errors.alternativePhoneNumber && (

@@ -1,7 +1,12 @@
 import CartConfirm from "@/components/Icons/CartConfirm";
 import React from "react";
+import { CartTypes } from "@/apiRequests/cart/getCart";
 
-const ConfirmPurchase = () => {
+interface IProps {
+  cart: CartTypes;
+}
+
+const ConfirmPurchase = ({ cart }: IProps) => {
   return (
     <div>
       <div className="flex  items-center justify-center bg-white rounded-[32px] px-4 py-12 gap-4 ">
@@ -16,15 +21,22 @@ const ConfirmPurchase = () => {
       <div className="mt-6 flex  items-center justify-around max-sm:flex-col gap-5  bg-white rounded-[32px] px-4 py-12 ">
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="sm:text-lg text-[#515151]">طريقة الدفع</p>
-          <span className="text-lg sm:text-2xl font-semibold">تحويل بنكي</span>
+          <span className="text-lg sm:text-2xl font-semibold">
+            دفع عند التوصيل
+          </span>
         </div>
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="sm:text-lg text-[#515151]"> الاجمالي</p>
-          <span className="text-lg sm:text-2xl font-semibold"> 6000 جم </span>
+          <span className="text-lg sm:text-2xl font-semibold">
+            {" "}
+            {cart.totalPriceAfterDiscount} جم{" "}
+          </span>
         </div>
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="sm:text-lg text-[#515151]"> التاريخ</p>
-          <span className="text-lg sm:text-2xl font-semibold"> 11/29/2024</span>
+          <span className="text-lg sm:text-2xl font-semibold">
+            {new Date().toLocaleDateString("en-US")}
+          </span>
         </div>
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="sm:text-lg text-[#515151]"> رقم الاوردر</p>

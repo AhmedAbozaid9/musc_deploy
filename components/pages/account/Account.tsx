@@ -28,7 +28,7 @@ const Account = ({
         {orders ? (
           <Orders orders={orders} slug={slug} setSlug={setSlug} />
         ) : (
-          <p>لا توجد طلبات</p>
+          <p className="mb-32 sm:mb-48">لا توجد طلبات</p>
         )}
 
         <div>

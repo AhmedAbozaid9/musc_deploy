@@ -2,6 +2,7 @@
 import { CartItemTypes } from "@/apiRequests/cart/getCart";
 import ItemCard from "@/components/general/ItemCard";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 interface CartItemsProps {
   cartItems: CartItemTypes[];
@@ -22,10 +23,9 @@ export default function CartItems({
             <ItemCard
               key={item.productId}
               id={item.productId}
-              image={""}
-              title={"item"}
+              image={item.imageCover}
               price={item.price}
-              category={"needed"}
+              category={""}
               count={item.quantity}
               handleDeleteItem={handleDeleteItem}
               handleUpdateItem={handleUpdateItem}
