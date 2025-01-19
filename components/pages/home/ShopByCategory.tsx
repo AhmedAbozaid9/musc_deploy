@@ -10,7 +10,7 @@ import Link from "next/link";
 export default function ShopByCategory() {
   const { data: categories, isLoading } = useQuery(
     ["categories"],
-    getCategories
+    getCategories,
   );
   console.log(categories);
 
@@ -44,7 +44,7 @@ export default function ShopByCategory() {
                   key={category.id}
                   image={category.image}
                   title={category.title}
-                  link={"#"}
+                  link={`category/${category.id}`}
                 />
               ))}
             </div>
