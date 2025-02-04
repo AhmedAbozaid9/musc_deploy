@@ -10,15 +10,15 @@ export const HeaderLinks: HeaderType[] = [
     title: "الرئيسية",
   },
   {
-    link: routes.Category.POST("appliances"),
+    link: routes.Category.POST("678c143dc55968df809476ed"),
     title: "الاجهزه الكهربائيه",
   },
   {
-    link: routes.Category.POST("plumbing"),
+    link: routes.Category.POST("678c1452c55968df809476f8"),
     title: "المنتجات الصحيه",
   },
   {
-    link: routes.Offers,
+    link: routes.Category.POST("offers"),
     title: "العروض",
   },
 ];

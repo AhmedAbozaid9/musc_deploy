@@ -11,8 +11,8 @@ import ProductActions from "./ProductActions";
 
 interface ProductDetailsProps {
   product: ProductType;
-  handleAddToCart: () => Promise<void>;
-  handleAddToWishlist: () => Promise<void>;
+  handleAddToCart: () => Promise<string | undefined>;
+  handleAddToWishlist: () => Promise<string | undefined>;
   quantity: number;
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
   color: string;

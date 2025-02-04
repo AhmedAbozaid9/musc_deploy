@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 interface OrderSummaryProps {
-  handleCheckout: () => Promise<void>;
+  handleCheckout: () => Promise<string | undefined>;
   cart: CartTypes;
 }
 
@@ -13,7 +13,6 @@ export default function OrderSummary({
   handleCheckout,
   cart,
 }: OrderSummaryProps) {
-  console.log("CART", cart);
   return (
     <>
       <div className="flex items-center justify-between">
@@ -31,17 +30,14 @@ export default function OrderSummary({
               <div className="flex items-end justify-between">
                 <div className="flex items-center gap-[16px]">
                   <Image
-                    src="/pr.webp"
+                    src={item.imageCover}
                     alt="Product"
                     width={90}
                     height={90}
                     className="w-[90px] h-[90px] rounded-[17px]"
                   />
                   <div className="flex flex-col gap-[8px]">
-                    <p className="text-[#787878] text-[12px]">ليدات زينه</p>
-                    <h4 className="text-black text-[18px]">
-                      ليدات زينه واضاءه
-                    </h4>
+                    <h4 className="text-black text-[18px]">{item.title}</h4>
                     <p className="text-black text-[14px] font-[400]">
                       الكميه : {item.quantity}
                     </p>
@@ -50,23 +46,6 @@ export default function OrderSummary({
                 <h4 className="text-black">{item.price} جم</h4>
               </div>
             ))}
-          {/* <div className="flex items-end justify-between">
-            <div className="flex items-center gap-[16px]">
-              <Image
-                src="/pr.webp"
-                alt="Product"
-                width={90}
-                height={90}
-                className="w-[90px] h-[90px] rounded-[17px]"
-              />
-              <div className="flex flex-col gap-[8px]">
-                <p className="text-[#787878] text-[12px]">ليدات زينه</p>
-                <h4 className="text-black text-[18px]">ليدات زينه واضاءه</h4>
-                <p className="text-black text-[14px] font-[400]">الكميه : 1</p>
-              </div>
-            </div>
-            <h4 className="text-black">3000 جم</h4>
-          </div> */}
         </div>
         <div className="my-[24px] bg-[#DFDFDF] h-[1px] w-full"></div>
         <div className="flex flex-col gap-[13px]">

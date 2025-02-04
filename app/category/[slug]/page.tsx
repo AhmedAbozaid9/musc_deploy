@@ -6,8 +6,6 @@ export default function SingleCategory() {
   return (
     <>
       <div className="container">
-        <Image src="/cat.webp" alt="Category" width={1360} height={459} />
-        <Brudcambs name="اسم التصنيف" />
         <MainSingleCategory />
       </div>
     </>

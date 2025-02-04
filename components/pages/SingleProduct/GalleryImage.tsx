@@ -38,7 +38,7 @@ export default function GalleryImage({ images }: GalleryImageProps) {
                     alt={`Thumbnail Slide ${index + 1}`}
                     width={110}
                     height={110}
-                    className="rounded-[16px]"
+                    className="rounded-[16px] w-[110px] h-[110px] object-cover object-center border-2"
                   />
                 </CarouselItem>
               ))}
@@ -53,7 +53,7 @@ export default function GalleryImage({ images }: GalleryImageProps) {
                 <Image
                   src={images[activeIndex]}
                   alt={`Main Slide ${activeIndex + 1}`}
-                  className="rounded-[16px] w-full"
+                  className="rounded-[16px] w-full "
                   width={555}
                   height={580}
                 />
