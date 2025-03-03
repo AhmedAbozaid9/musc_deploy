@@ -43,7 +43,7 @@ export default function OrderSummary({
                     </p>
                   </div>
                 </div>
-                <h4 className="text-black">{item.price} جم</h4>
+                <h4 className="text-black">{item.price} ر.س</h4>
               </div>
             ))}
         </div>
@@ -54,23 +54,23 @@ export default function OrderSummary({
               المجموع الفرعي
             </h3>
             <p className="text-black text-[16px] font-[400]">
-              {cart.totalPrice} جم
+              {cart.totalPrice} ر.سس
             </p>
           </div>
           <div className="flex items-center justify-between gap-[8px]">
             <h3 className="text-black text-[16px] font-[400]">خدمه التركيب</h3>
-            <p className="text-black text-[16px] font-[400]">50 جم</p>
+            <p className="text-black text-[16px] font-[400]">50 ر.س</p>
           </div>
           <div className="flex items-center justify-between gap-[8px]">
             <h3 className="text-black text-[16px] font-[400]">الشحن</h3>
             <p className="text-black text-[16px] font-[400]">
-              {cart.shippingPrice} جم
+              {cart.shippingPrice} ر.س
             </p>
           </div>
           <div className="flex items-center justify-between gap-[8px]">
             <h3 className="text-black text-[16px] font-[400]">كود خصم</h3>
             <p className="text-[#08B41A] text-[16px] font-[400]">
-              -{cart.totalPrice * (cart.discount / 100)} جم
+              -{cart.totalPrice * (cart.discount / 100)} ر.س
             </p>
           </div>
           <div className="bg-[#FAFAFA] rounded-[13px] py-[10px] px-[20px] flex items-center justify-between">
@@ -89,7 +89,7 @@ export default function OrderSummary({
               المجموع
             </h4>
             <h4 className="text-black font-[400] lg:text-[24px] text-[18px]">
-              {cart.totalPriceAfterDiscount} جم
+              {cart.totalPriceAfterDiscount} ر.س
             </h4>
           </div>
 

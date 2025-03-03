@@ -74,7 +74,7 @@ const ItemCard: React.FC<ItemCartType> = ({
           </div>
           <div className="flex flex-col gap-[8px]">
             <p className="text-[#333] lg:text-[32px] text-[24px] font-[400]">
-              {price} جم
+              {price} ر.س
             </p>
             <div className="flex item-center gap-[16px] lg:flex-col">
               <div className="flex items-center gap-[16px]">
