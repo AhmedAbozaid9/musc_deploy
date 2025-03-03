@@ -46,7 +46,7 @@ const ConfirmPurchaseDetails = ({ cart, selectedAddress }: IProps) => {
                     />
                     <div className="flex flex-col gap-[8px]">
                       <h4 className="text-black text-[18px]">{item.title}</h4>
-                      <h4 className="text-black">{item.price} جم</h4>
+                      <h4 className="text-black">{item.price} ر.س</h4>
                       <p className="text-black text-[14px] font-[400]">
                         الكميه : {item.quantity}
                       </p>

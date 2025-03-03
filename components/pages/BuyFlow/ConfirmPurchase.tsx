@@ -1,6 +1,6 @@
+import { CartTypes } from "@/apiRequests/cart/getCart";
 import CartConfirm from "@/components/Icons/CartConfirm";
 import React from "react";
-import { CartTypes } from "@/apiRequests/cart/getCart";
 
 interface IProps {
   cart: CartTypes;
@@ -29,7 +29,7 @@ const ConfirmPurchase = ({ cart }: IProps) => {
           <p className="sm:text-lg text-[#515151]"> الاجمالي</p>
           <span className="text-lg sm:text-2xl font-semibold">
             {" "}
-            {cart.totalPriceAfterDiscount} جم{" "}
+            {cart.totalPriceAfterDiscount} ر.س{" "}
           </span>
         </div>
         <div className="flex flex-col items-center justify-center gap-2">

@@ -40,7 +40,7 @@ export default function CartSummary({
           <div className="flex justify-between items-center">
             <p className="text-[#787878] text-[20px] font-[300]">رسوم الشحن</p>
             <p className="text-[#1E1E1E] text-[24px] font-[500]">
-              {cart.shippingPrice} جم
+              {cart.shippingPrice} ر.س
             </p>
           </div>
         </div>
