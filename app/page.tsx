@@ -1,5 +1,6 @@
 "use client";
 
+import { getUser } from "@/apiRequests/auth/getUser";
 import BannerHero from "@/components/pages/home/BannerHero";
 import FeaturedProducts from "@/components/pages/home/FeaturedProducts";
 import OfferBanner from "@/components/pages/home/OfferBanner";
@@ -14,6 +15,7 @@ import { useEffect } from "react";
 export default function Home() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
+  const user = useAuthStore((state) => state.user);
   const setUser = useAuthStore((state) => state.setUser);
 
   useEffect(() => {
@@ -23,6 +25,14 @@ export default function Home() {
     }
   }, [token]);
 
+  useEffect(() => {
+    if (token && !user) {
+      (async () => {
+        const user = await getUser();
+        setUser(user);
+      })();
+    }
+  }, []);
   return (
     <>
       <BannerHero />
