@@ -22,6 +22,7 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
     try {
       const response = await signUp({ ...data, age: parseInt(data.age) });
       toast.success("تفقد بريدك الالكتروني  ");
+      window.location.reload();
       setShowSignup(false);
     } catch (err) {
       toast.error("حدث خطأ");
@@ -34,6 +35,7 @@ const MainAuth = ({ showSignup, setShowSignup }: MainAuthProps) => {
       toast.success("تم تسحيل الدخول");
       setUser(response.user);
       Cookies.set("musc-token", response.token);
+      window.location.reload();
       setShowSignup(false);
     } catch (err) {
       toast.error("حدث خطأ");
