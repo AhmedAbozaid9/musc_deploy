@@ -1,15 +1,5 @@
 "use client";
 import MainAuth from "@/components/pages/auth/MainAuth";
-import { useAuthStore } from "@/store/useAuthStore";
-import Link from "next/link";
-import Logo from "../Icons/Logo";
-import { HeaderLinks, HeaderType } from "@/store/Links";
-import { usePathname, useRouter } from "next/navigation";
-import { Button } from "../ui/button";
-import CartIcon from "../Icons/CartIcon";
-import UserIcon from "../Icons/UserIcon";
-import SearchIcon from "../Icons/SearchIcon";
-import routes from "@/lib/routes";
 import {
   Sheet,
   SheetContent,
@@ -17,7 +7,17 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import routes from "@/lib/routes";
+import { HeaderLinks, HeaderType } from "@/store/Links";
+import { useAuthStore } from "@/store/useAuthStore";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import CartIcon from "../Icons/CartIcon";
+import Logo from "../Icons/Logo";
+import SearchIcon from "../Icons/SearchIcon";
+import UserIcon from "../Icons/UserIcon";
+import { Button } from "../ui/button";
 export default function Header() {
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
@@ -33,7 +33,10 @@ export default function Header() {
         <div className="bg-primary lg:px-[48px] px-[24px] py-[12px] rounded-[32px]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-[80px]">
-              <Logo />
+              <Link href="/">
+                <Logo />
+              </Link>
+
               <div className="lg:flex items-center gap-[24px] hidden">
                 {HeaderLinks?.map((item: HeaderType, index) => (
                   <Link
