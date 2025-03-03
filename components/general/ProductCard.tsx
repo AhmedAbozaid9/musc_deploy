@@ -19,6 +19,7 @@ interface ProductType {
   isInFavorites?: boolean;
   refetch?: () => void;
 }
+
 const ProductCard: React.FC<ProductType> = ({
   id,
   offer,
@@ -30,80 +31,77 @@ const ProductCard: React.FC<ProductType> = ({
   isInFavorites,
   refetch,
 }) => {
-  const handleAddToWishlist = async () => {
+  const handleAddToWishlist = async (e: React.MouseEvent) => {
+    e.preventDefault();
     try {
-      const res = await addWishlist(id);
+      await addWishlist(id);
       toast.success("تمت الاضافة الي المفضلة");
     } catch (error) {
       toast.error("حدث خطأ");
-      console.log(error);
+      console.error(error);
     }
   };
-  const handleDeleteFromWishlist = async () => {
+
+  const handleDeleteFromWishlist = async (e: React.MouseEvent) => {
+    e.preventDefault();
     try {
-      const res = await removeFromWishlist(id);
+      await removeFromWishlist(id);
       toast.success("تمت الازالة من المفضلة");
       refetch && refetch();
-    } catch (error: any) {
+    } catch (error) {
       toast.error("حدث خطأ");
+      console.error(error);
     }
   };
+
   return (
-    <>
-      <div className="flex flex-col gap-[24px]">
+    <Link href={link} className="block">
+      <div className="flex flex-col gap-[24px] cursor-pointer">
         <div
-          className="rounded-[32px] h-[430px]  px-[32px] py-[20px] flex flex-col justify-between group"
+          className="rounded-[32px] h-[430px] px-[32px] py-[20px] flex flex-col justify-between group"
           style={{ background: `url(${image})`, backgroundSize: "cover" }}
         >
           <div className="flex justify-between items-center">
-            <div>
-              {offer && (
-                <div
-                  className={`p-[18px] bg-secondary text-primary rounded-[77px] `}
-                >
-                  وفر {offer}%
-                </div>
-              )}
-            </div>
+            {offer && (
+              <div className="p-[18px] bg-secondary text-primary rounded-[77px]">
+                وفر {offer}%
+              </div>
+            )}
             {!isInFavorites ? (
               <button
                 onClick={handleAddToWishlist}
-                className="bg-[#b4b3b34c]  rounded-full p-2"
+                className="bg-[#b4b3b34c] rounded-full p-2"
               >
                 <Whishlist />
               </button>
             ) : (
               <button
                 onClick={handleDeleteFromWishlist}
-                className="bg-[#b4b3b34c]  rounded-full p-2"
+                className="bg-[#b4b3b34c] rounded-full p-2"
               >
                 <Trash color="white" />
               </button>
             )}
           </div>
-          <Link className="w-full" href={`/product/${id}`}>
-            <Button className="w-full transition-all lg:opacity-0 group-hover:opacity-[1]">
-              اشتري الان
-              <CartButton />
-            </Button>
-          </Link>
+          <Button className="w-full transition-all lg:opacity-0 group-hover:opacity-[1]">
+            اشتري الان
+            <CartButton />
+          </Button>
         </div>
         <div className="flex items-center justify-between gap-[16px] px-[12px]">
           <div className="flex flex-col gap-[12px]">
             <p className="text-[#787878] text-[16px]">{category}</p>
-            <Link
-              className="text-primary lg:text-[20px] text-[18px]"
-              href={link}
-            >
-              {name}{" "}
-            </Link>
+            <span className="text-primary lg:text-[20px] text-[18px]">
+              {name}
+            </span>
           </div>
           <h3 className="text-primary lg:text-[28px] text-[20px] font-[600]">
-            {price} جنيه{" "}
+            {price} ر.س
           </h3>
         </div>
       </div>
-    </>
+    </Link>
   );
 };
+
 export default ProductCard;
