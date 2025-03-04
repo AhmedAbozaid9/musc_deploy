@@ -21,18 +21,21 @@ export default function Home() {
   useEffect(() => {
     if (token) {
       Cookies.set("musc-token", token);
-      window.location.replace(window.location.pathname);
     }
   }, [token]);
 
   useEffect(() => {
     if (token && !user) {
       (async () => {
-        const user = await getUser();
-        setUser(user);
+        try {
+          const userData = await getUser();
+          setUser(userData);
+        } catch (error) {
+          console.error("Failed to fetch user:", error);
+        }
       })();
     }
-  }, []);
+  }, [token, user, setUser]);
   return (
     <>
       <BannerHero />
