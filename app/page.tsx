@@ -26,7 +26,7 @@ export default function Home() {
   }, [token]);
 
   useEffect(() => {
-    if (token && !user) {
+    if (!user) {
       (async () => {
         try {
           const userData = await getUser();
@@ -36,7 +36,7 @@ export default function Home() {
         }
       })();
     }
-  }, [token, user, setUser]);
+  }, [user, setUser]);
   return (
     <>
       <BannerHero />
