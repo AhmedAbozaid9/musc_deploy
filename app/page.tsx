@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { getUser } from "@/apiRequests/auth/getUser";
 import BannerHero from "@/components/pages/home/BannerHero";
 import FeaturedProducts from "@/components/pages/home/FeaturedProducts";
@@ -12,7 +13,7 @@ import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const user = useAuthStore((state) => state.user);
@@ -37,6 +38,7 @@ export default function Home() {
       })();
     }
   }, [user, setUser]);
+
   return (
     <>
       <BannerHero />
@@ -46,5 +48,13 @@ export default function Home() {
       <FeaturedProducts />
       <WhyChooseUs />
     </>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }
