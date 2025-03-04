@@ -1,6 +1,5 @@
 "use client";
 
-import { Suspense } from "react";
 import { getUser } from "@/apiRequests/auth/getUser";
 import BannerHero from "@/components/pages/home/BannerHero";
 import FeaturedProducts from "@/components/pages/home/FeaturedProducts";
@@ -11,7 +10,7 @@ import WhyChooseUs from "@/components/pages/home/WhyChooseUs";
 import { useAuthStore } from "@/store/useAuthStore";
 import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -37,7 +36,7 @@ function HomeContent() {
         }
       })();
     }
-  }, [user, setUser]);
+  }, []);
 
   return (
     <>
