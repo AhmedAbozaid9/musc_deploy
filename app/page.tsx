@@ -21,6 +21,7 @@ export default function Home() {
   useEffect(() => {
     if (token) {
       Cookies.set("musc-token", token);
+      window.location.href = "/";
     }
   }, [token]);
 
