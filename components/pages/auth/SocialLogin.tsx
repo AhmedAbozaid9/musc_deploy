@@ -26,7 +26,12 @@ const SocialLogin = () => {
       >
         <Button type="button" className="bg-secondary text-primary w-full px-4">
           تسجيل الدخول بواسطة فيسبوك
-          <Image src="/facebooklogo.svg" alt="google" width={32} height={32} />
+          <Image
+            src="/facebooklogo.svg"
+            alt="facebook"
+            width={32}
+            height={32}
+          />
         </Button>
       </Link>
     </section>

@@ -10,6 +10,6 @@ interface SignUpTypes {
 }
 
 export const getUser = async (): Promise<UserTypes> => {
-  const response = await axios.post("getUserProfile");
+  const response = await axios.get("getUserProfile");
   return response.data.user;
 };
