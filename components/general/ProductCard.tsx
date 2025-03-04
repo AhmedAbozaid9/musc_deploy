@@ -83,7 +83,7 @@ const ProductCard: React.FC<ProductType> = ({
           </div>
           <Link className="w-full" href={`/product/${id}`}>
             <Button className="w-full transition-all lg:opacity-0 group-hover:opacity-[1]">
-              اشتري الان
+              اشتري الا
               <CartButton />
             </Button>
           </Link>
