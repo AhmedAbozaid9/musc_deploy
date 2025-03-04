@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import React from "react";
 import { useForm } from "react-hook-form";
+import SocialLogin from "./SocialLogin";
 
 interface SigninFormProps {
   handleSignin: (data: SigninFormTypes) => Promise<void>;
@@ -58,6 +59,7 @@ const SigninForm = ({ handleSignin }: SigninFormProps) => {
       <Button className="bg-primary text-secondary w-full">
         تسجيل الدخول <WhiteArrow />
       </Button>
+      <SocialLogin />
     </form>
   );
 };
