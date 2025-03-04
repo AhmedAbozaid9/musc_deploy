@@ -38,13 +38,13 @@ export default function Home() {
     }
   }, [user, setUser]);
   return (
-    <div className="bg-green-200">
+    <>
       <BannerHero />
       <ShopByCategory />
       <OnSaleProducts />
       <OfferBanner />
       <FeaturedProducts />
       <WhyChooseUs />
-    </div>
+    </>
   );
 }
