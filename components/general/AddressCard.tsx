@@ -1,5 +1,7 @@
+import { useState } from "react";
 import EditPenAddress from "../Icons/EditPenAddress";
 import HomeAddressIcon from "../Icons/HomeAddressIcon";
+import AddAddressForm from "./AddAddressForm";
 
 interface AddressType {
   id: string;
@@ -8,6 +10,7 @@ interface AddressType {
   address: string;
   phone: string;
   onClick: () => void;
+  refetch: () => void;
 }
 const AddressCard: React.FC<AddressType> = ({
   id,
@@ -16,7 +19,9 @@ const AddressCard: React.FC<AddressType> = ({
   address,
   phone,
   onClick,
+  refetch,
 }) => {
+  const [showEditForm, setShowEditForm] = useState(false);
   return (
     <>
       <div className="p-[32px] bg-white rounded-[40px]" onClick={onClick}>
@@ -25,7 +30,10 @@ const AddressCard: React.FC<AddressType> = ({
             <HomeAddressIcon />
             <h3 className="lg:text-[24px] text-[18px] font-[500]">{name}</h3>
           </div>
-          <button className="flex items-center gap-[12px] text-[16px] font-[600]">
+          <button
+            onClick={() => setShowEditForm(true)}
+            className="flex items-center gap-[12px] text-[16px] font-[600]"
+          >
             تعديل
             <EditPenAddress />
           </button>
@@ -51,6 +59,15 @@ const AddressCard: React.FC<AddressType> = ({
           </div>
         </div>
       </div>
+      <AddAddressForm
+        refetch={refetch}
+        showForm={showEditForm}
+        setShowForm={setShowEditForm}
+        phoneNumber={phone}
+        fullName={fullName}
+        detailedAddress={address}
+        id={id}
+      />
     </>
   );
 };

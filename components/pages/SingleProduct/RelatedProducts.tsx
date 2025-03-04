@@ -40,7 +40,7 @@ export default function RelatedProducts() {
                     image={"/pr.webp"}
                     category={"تلفزيونات"}
                     name={"تلفزيون LG"}
-                    price={"18000"}
+                    price={18000}
                   />
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
@@ -51,7 +51,7 @@ export default function RelatedProducts() {
                     image={"/pr.webp"}
                     category={"تيست"}
                     name={"تلفزيون LG"}
-                    price={"18000"}
+                    price={18000}
                   />
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
@@ -62,7 +62,7 @@ export default function RelatedProducts() {
                     image={"/pr.webp"}
                     category={"تلفزيونات"}
                     name={"تلفزيون LG"}
-                    price={"18000"}
+                    price={18000}
                   />
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
@@ -73,7 +73,7 @@ export default function RelatedProducts() {
                     image={"/pr.webp"}
                     category={"تلفزيونات"}
                     name={"تلفزيون LG"}
-                    price={"18000"}
+                    price={18000}
                   />
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
@@ -84,7 +84,7 @@ export default function RelatedProducts() {
                     image={"/pr.webp"}
                     category={"تلفزيونات"}
                     name={"تلفزيون LG"}
-                    price={"18000"}
+                    price={18000}
                   />
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
@@ -95,7 +95,7 @@ export default function RelatedProducts() {
                     image={"/pr.webp"}
                     category={"تلفزيونات"}
                     name={"تلفزيون LG"}
-                    price={"18000"}
+                    price={18000}
                   />
                 </CarouselItem>
                 <CarouselItem className="lg:basis-[30%] basis-[85%]">
@@ -106,7 +106,7 @@ export default function RelatedProducts() {
                     image={"/pr.webp"}
                     category={"تلفزيونات"}
                     name={"تلفزيون LG"}
-                    price={"18000"}
+                    price={18000}
                   />
                 </CarouselItem>
               </CarouselContent>

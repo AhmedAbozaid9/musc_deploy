@@ -1,14 +1,16 @@
 interface CountableItemProps {
   count: number;
   onCountChange: (newCount: number) => void;
+  maxQuantity: number;
 }
 
 export default function CountableItem({
   count,
   onCountChange,
+  maxQuantity,
 }: CountableItemProps) {
   const onPlus = () => {
-    if (count < 10) {
+    if (count < maxQuantity) {
       onCountChange(count + 1);
     }
   };

@@ -5,27 +5,57 @@ import CartButtonWhite from "@/components/Icons/CartButtonWhite";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function ProductActions() {
-  const [count, setCount] = useState(1);
+interface ProductActionsProps {
+  price: number;
+  maxQuantity: number;
+  handleAddToCart: () => Promise<string | undefined>;
+  quantity: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export default function ProductActions({
+  price,
+  maxQuantity,
+  handleAddToCart,
+  quantity,
+  setQuantity,
+}: ProductActionsProps) {
   const onCountChange = (newCount: number) => {
-    setCount(newCount);
+    setQuantity(newCount);
   };
   return (
     <>
       <div className="flex flex-col gap-[16px]">
         <div className="flex justify-between lg:items-center items-start gap-[12px] flex-col lg:flex-row">
-          <CountableItem count={count} onCountChange={onCountChange} />
-          <h4 className="text-[24px]">3000 جم</h4>
+          {maxQuantity > 0 && (
+            <CountableItem
+              count={quantity}
+              onCountChange={onCountChange}
+              maxQuantity={maxQuantity}
+            />
+          )}
+          <h4 className="text-[24px]">{price} جم</h4>
         </div>
         <div className="flex items-center gap-[16px]">
-          <Button className="w-full bg-primary text-secondary">
-            اشتري الان
-            <CartButtonWhite />
-          </Button>
-          <Button className="w-full">
-            اضف للسلة
-            <CartButton />
-          </Button>
+          {maxQuantity > 0 ? (
+            <>
+              <Button
+                onClick={handleAddToCart}
+                className="w-full bg-primary text-secondary"
+              >
+                اشتري الان
+                <CartButtonWhite />
+              </Button>
+              <Button onClick={handleAddToCart} className="w-full">
+                اضف للسلة
+                <CartButton />
+              </Button>
+            </>
+          ) : (
+            <p className="text-lg text-center w-full my-2 p-4 border rounded-full">
+              لقد نفذ هذا المنتج
+            </p>
+          )}
         </div>
       </div>
     </>

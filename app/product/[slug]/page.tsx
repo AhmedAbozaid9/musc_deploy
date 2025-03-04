@@ -1,19 +1,15 @@
-import Brudcambs from "@/components/general/Brudcambs";
-import GalleryImage from "@/components/pages/SingleProduct/GalleryImage";
-import ProductDetails from "@/components/pages/SingleProduct/ProductDetails";
-import RelatedProducts from "@/components/pages/SingleProduct/RelatedProducts";
+import MainSingleProduct from "@/components/pages/SingleProduct/MainSingleProduct";
 
-export default function SingleProduct() {
+interface Params {
+  slug: string;
+}
+
+export default function SingleProduct({ params }: any) {
+  const productId = params.slug;
+
   return (
     <>
-      <div className="container">
-        <Brudcambs name="اسم المنتج" />
-        <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-[56px] gap-[0px]">
-          <GalleryImage />
-          <ProductDetails />
-        </div>
-        <RelatedProducts />
-      </div>
+      <MainSingleProduct productId={productId} />
     </>
   );
 }
