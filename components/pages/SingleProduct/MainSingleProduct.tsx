@@ -5,24 +5,27 @@ import { getSingleProduct } from "@/apiRequests/products/getSingleProduct";
 import { addWishlist } from "@/apiRequests/wishlist/addWishlist";
 import Brudcambs from "@/components/general/Brudcambs";
 import Loading from "@/components/general/Loading";
+import { useSignup } from "@/context/ShowSignupContext";
 import { useQuery } from "@tanstack/react-query";
+import Cookies from "js-cookie";
 import React from "react";
 import toast from "react-hot-toast";
 import GalleryImage from "./GalleryImage";
 import ProductDetails from "./ProductDetails";
 import RelatedProducts from "./RelatedProducts";
-import Cookies from "js-cookie";
 
 interface MainSingleProductProps {
   productId: string;
 }
 
 const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
+  const { setShowSignup } = useSignup();
+
   const token = Cookies.get("musc-token");
   const [quantity, setQuantity] = React.useState(1);
   const [color, setColor] = React.useState("");
   const { data: product } = useQuery(["product", productId], () =>
-    getSingleProduct(productId),
+    getSingleProduct(productId)
   );
   // const { data: relatedProducts } = useQuery(
   //   ["relatedProducts", productId],
@@ -45,6 +48,7 @@ const MainSingleProduct = ({ productId }: MainSingleProductProps) => {
   };
   const handleAddToCart = async () => {
     if (!token) {
+      setShowSignup(true);
       return toast.error("يرجى تسجيل الدخول اولا");
     }
     try {

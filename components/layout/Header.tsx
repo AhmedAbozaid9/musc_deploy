@@ -7,6 +7,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useSignup } from "@/context/ShowSignupContext";
 import routes from "@/lib/routes";
 import { HeaderLinks, HeaderType } from "@/store/Links";
 import { useAuthStore } from "@/store/useAuthStore";
@@ -21,7 +22,7 @@ import { Button } from "../ui/button";
 export default function Header() {
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
-  const [showSignup, setShowSignup] = useState(false);
+  const { showSignup, setShowSignup } = useSignup();
   const path = usePathname();
   const [SideBar, setSidebar] = useState(false);
   const handleClose = () => {
