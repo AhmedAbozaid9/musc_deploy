@@ -34,7 +34,7 @@ export default function ProductActions({
               maxQuantity={maxQuantity}
             />
           )}
-          <h4 className="text-[24px]">{price} جم</h4>
+          <h4 className="text-[24px]">{price} ر.س</h4>
         </div>
         <div className="flex items-center gap-[16px]">
           {maxQuantity > 0 ? (
