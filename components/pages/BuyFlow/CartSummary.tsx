@@ -2,8 +2,6 @@ import { CartTypes } from "@/apiRequests/cart/getCart";
 import CouponCode from "@/components/general/CouponCode";
 import WhiteArrow from "@/components/Icons/WhiteArrow";
 import { Button } from "@/components/ui/button";
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
 
 interface CartSummaryProps {
   cart: CartTypes;

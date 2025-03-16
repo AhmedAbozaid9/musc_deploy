@@ -4,6 +4,7 @@ import { applyPromoCode } from "@/apiRequests/cart/applyPromoCode";
 import { checkout } from "@/apiRequests/cart/checkout";
 import { deleteCartItem } from "@/apiRequests/cart/deleteCartItem";
 import { getCart } from "@/apiRequests/cart/getCart";
+import { updateCartInstalling } from "@/apiRequests/cart/updateCartInstalling";
 import { updateCartItem } from "@/apiRequests/cart/updateCartItem";
 import Brudcambs from "@/components/general/Brudcambs";
 import Loading from "@/components/general/Loading";
@@ -43,6 +44,18 @@ export default function MainCart() {
       const response = await updateCartItem(id, quantity);
       if (response.status === "success") {
         toast.success("تم تحديث الكمية بنجاح");
+        refetch();
+      }
+    } catch (err) {
+      toast.error("حدث خطأ ما");
+    }
+  };
+
+  const handleUpdateInstalling = async (id: string, installing: boolean) => {
+    try {
+      const response = await updateCartInstalling(id, installing);
+      if (response.status === "success") {
+        toast.success("تم تحديث خدمة التركيب بنجاح");
         refetch();
       }
     } catch (err) {
@@ -108,6 +121,7 @@ export default function MainCart() {
                   {step === 1 && (
                     <CartItems
                       cartItems={cart.cartItems}
+                      handleUpdateInstalling={handleUpdateInstalling}
                       handleUpdateItem={handleUpdateItem}
                       handleDeleteItem={handleDeleteItem}
                     />

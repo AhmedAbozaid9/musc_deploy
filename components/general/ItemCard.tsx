@@ -1,9 +1,11 @@
 "use client";
+import { updateCartInstalling } from "@/apiRequests/cart/updateCartInstalling";
+import { getSingleProduct } from "@/apiRequests/products/getSingleProduct";
+import { useQuery } from "@tanstack/react-query";
+import { Plus, X } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import DeleteItemCart from "../Icons/DeleteItemCart";
-import { useQuery } from "@tanstack/react-query";
-import { getSingleProduct } from "@/apiRequests/products/getSingleProduct";
 
 export interface ItemCartType {
   id: string;
@@ -11,8 +13,11 @@ export interface ItemCartType {
   price: number;
   category: string;
   count: number;
+  installationPrice: number;
+  installationSelected: boolean;
   handleDeleteItem: (id: string) => Promise<void>;
   handleUpdateItem: (id: string, quantity: number) => Promise<void>;
+  handleUpdateInstalling: (id: string, installing: boolean) => Promise<void>;
 }
 const ItemCard: React.FC<ItemCartType> = ({
   id,
@@ -20,6 +25,9 @@ const ItemCard: React.FC<ItemCartType> = ({
   price,
   category,
   count,
+  installationPrice,
+  installationSelected,
+  handleUpdateInstalling,
   handleUpdateItem,
   handleDeleteItem,
 }) => {
@@ -61,9 +69,9 @@ const ItemCard: React.FC<ItemCartType> = ({
           alt={product?.title || ""}
           width={150}
           height={150}
-          className="rounded-[16px] lg:w-[150px] w-[50px] lg:h-[150px] h-[50px]"
+          className="rounded-[16px] lg:w-[150px] w-[50px] lg:h-[150px] h-[50px] self-start"
         />
-        <div className="flex lg:items-center items-start justify-between w-full flex-col lg:flex-row gap-[16px]">
+        <div className="">
           <div className="flex flex-col gap-[8px]">
             <p className="text-[#787878] lg:text-[18px] text-[16px] font-[400]">
               {category}
@@ -72,38 +80,53 @@ const ItemCard: React.FC<ItemCartType> = ({
               {product?.title}
             </h2>
           </div>
-          <div className="flex flex-col gap-[8px]">
-            <p className="text-[#333] lg:text-[32px] text-[24px] font-[400]">
-              {price} ر.س
-            </p>
-            <div className="flex item-center gap-[16px] lg:flex-col">
-              <div className="flex items-center gap-[16px]">
-                <div className="flex w-[150px] justify-between items-center border border-[#D4D4D4] rounded-[15px] gap-[16px] p-[2px]">
-                  <button
-                    onClick={onMinus}
-                    className="bg-[#F7F7F7] py-[8px] px-[18px] rounded-r-[15px]"
-                  >
-                    -
-                  </button>
-                  <h4 className="text-[18px] text-[#1D1B1B] font-[600]">
-                    {localQuantity}
-                  </h4>
-                  <button
-                    onClick={onPlus}
-                    className="bg-[#F7F7F7] py-[8px] px-[18px] rounded-l-[15px]"
-                  >
-                    +
-                  </button>
+          <div className="flex lg:items-center items-start justify-between w-full flex-col lg:flex-row gap-[16px]">
+            <div className="flex flex-col gap-[8px]">
+              <p className="text-[#333] lg:text-[32px] text-[24px] font-[400]">
+                {price} ر.س
+              </p>
+              <div className="flex item-center gap-[16px] lg:flex-col">
+                <div className="flex items-center gap-[16px]">
+                  <div className="flex w-[150px] justify-between items-center border border-[#D4D4D4] rounded-[15px] gap-[16px] p-[2px]">
+                    <button
+                      onClick={onMinus}
+                      className="bg-[#F7F7F7] py-[8px] px-[18px] rounded-r-[15px]"
+                    >
+                      -
+                    </button>
+                    <h4 className="text-[18px] text-[#1D1B1B] font-[600]">
+                      {localQuantity}
+                    </h4>
+                    <button
+                      onClick={onPlus}
+                      className="bg-[#F7F7F7] py-[8px] px-[18px] rounded-l-[15px]"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
+                <button
+                  onClick={() => handleDeleteItem(id)}
+                  className="flex gap-[8px] mx-auto mt-[18px] text-[#F80022] text-[16px]"
+                >
+                  <DeleteItemCart />
+                  ازاله
+                </button>
               </div>
-              <button
-                onClick={() => handleDeleteItem(id)}
-                className="flex gap-[8px] mx-auto mt-[18px] text-[#F80022] text-[16px]"
-              >
-                <DeleteItemCart />
-                ازاله
-              </button>
             </div>
+          </div>
+          <div
+            className={`${
+              installationSelected ? "bg-[#8CD43533]" : "bg-gray-200"
+            } p-3 rounded-lg flex items-center gap-2 mt-4`}
+          >
+            <span> {installationPrice} ر.س خدمة التركيب</span>
+            <button
+              onClick={() => updateCartInstalling(id, !installationSelected)}
+              className="bg-white rounded-full p-2"
+            >
+              {installationSelected ? <X size={14} /> : <Plus size={14} />}
+            </button>
           </div>
         </div>
       </div>

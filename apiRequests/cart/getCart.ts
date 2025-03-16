@@ -8,6 +8,8 @@ export type CartItemTypes = {
   quantity: number;
   imageCover: string;
   description: string;
+  installationServiceSelected: boolean;
+  installationServicePrice: number;
 };
 
 export type CartTypes = {

@@ -1,16 +1,18 @@
 "use client";
 import { CartItemTypes } from "@/apiRequests/cart/getCart";
 import ItemCard from "@/components/general/ItemCard";
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 interface CartItemsProps {
   cartItems: CartItemTypes[];
+  handleUpdateInstalling: (id: string, installing: boolean) => Promise<void>;
   handleDeleteItem: (id: string) => Promise<void>;
   handleUpdateItem: (id: string, quantity: number) => Promise<void>;
 }
 export default function CartItems({
   cartItems,
+  handleUpdateInstalling,
   handleUpdateItem,
   handleDeleteItem,
 }: CartItemsProps) {
@@ -26,9 +28,12 @@ export default function CartItems({
               image={item.imageCover}
               price={item.price}
               category={""}
+              installationPrice={item.installationServicePrice}
+              installationSelected={item.installationServiceSelected}
               count={item.quantity}
               handleDeleteItem={handleDeleteItem}
               handleUpdateItem={handleUpdateItem}
+              handleUpdateInstalling={handleUpdateInstalling}
             />
           ))}
         </div>
