@@ -31,6 +31,8 @@ const ItemCard: React.FC<ItemCartType> = ({
   handleUpdateItem,
   handleDeleteItem,
 }) => {
+  const [localInstlling, setLocalInstalling] =
+    useState<boolean>(installationSelected);
   const { data: product } = useQuery({
     queryKey: ["product", id],
     queryFn: () => getSingleProduct(id),
@@ -117,15 +119,18 @@ const ItemCard: React.FC<ItemCartType> = ({
           </div>
           <div
             className={`${
-              installationSelected ? "bg-[#8CD43533]" : "bg-gray-200"
+              localInstlling ? "bg-[#8CD43533]" : "bg-gray-200"
             } p-3 rounded-lg flex items-center gap-2 mt-4`}
           >
             <span> {installationPrice} ر.س خدمة التركيب</span>
             <button
-              onClick={() => updateCartInstalling(id, !installationSelected)}
+              onClick={() => {
+                setLocalInstalling(!localInstlling);
+                updateCartInstalling(id, !localInstlling);
+              }}
               className="bg-white rounded-full p-2"
             >
-              {installationSelected ? <X size={14} /> : <Plus size={14} />}
+              {localInstlling ? <X size={14} /> : <Plus size={14} />}
             </button>
           </div>
         </div>
